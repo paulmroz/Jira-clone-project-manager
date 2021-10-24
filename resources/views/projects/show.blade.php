@@ -18,19 +18,41 @@
 
                     @foreach($project->tasks as $task)
                         <div class="card mb-3">
-                            {{$task->body}}
+                            <form action="{{ $task->path() }}" method="post">
+                                @method('PATCH')
+                                @csrf
+                                <div class="flex">
+                                    <input class="w-full border-0 {{$task->completed ? 'text-gray-400' : ''}}" type="text"
+                                           name="body" value="{{$task->body}}">
+                                    <input type="checkbox" name="completed"
+                                           onchange="this.form.submit()" {{ $task->completed ? 'checked': ''}}>
+                                </div>
+                            </form>
                         </div>
                     @endforeach
+                    <div class="card mb-3">
+                        <form action="{{ $project->path() . '/tasks'}}" method="POST">
+                            @csrf
+                            <input placeholder="Dodaj zadanie.." class="w-full" name="body">
+                        </form>
+                    </div>
 
                 </div>
                 <div>
                     <h2 class="text-lg text-gray-500 font-normal mb-3">Notatki</h2>
-                    <textarea class="card w-full" style="min-height: 200px">
-                    </textarea>
+                    <form action="{{$project->path()}}" method="post">
+                        @csrf
+                        @method('PATCH')
+                        <textarea class="card w-5/6 mb-6" name="notes">{{$project->notes}}</textarea>
+                        <div>
+                            <button type="submit" class="button">Save</button>
+                        </div>
+
+                    </form>
                 </div>
             </div>
 
-            <div class="lg:w-1/4 px-3">
+            <div class="lg:w-1/4 px-3 mt-10">
                 @include('projects.card')
             </div>
         </div>
