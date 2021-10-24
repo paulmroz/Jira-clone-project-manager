@@ -15,9 +15,13 @@
             <div class="lg:w-3/4 px-3 mb-6">
                 <div class="mb-8">
                     <h2 class="text-lg text-gray-500 font-normal mb-3">Zadania</h2>
-                    <div class="card">
-                        Test
-                    </div>
+
+                    @foreach($project->tasks as $task)
+                        <div class="card mb-3">
+                            {{$task->body}}
+                        </div>
+                    @endforeach
+
                 </div>
                 <div>
                     <h2 class="text-lg text-gray-500 font-normal mb-3">Notatki</h2>
