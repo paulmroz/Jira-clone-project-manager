@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Project;
 use App\Models\User;
+use Facades\Tests\Setup\ProjectFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Str;
@@ -33,8 +34,6 @@ class ProjectsTest extends TestCase
 
         $response->assertRedirect($project->path());
 
-        $this->assertDatabaseHas('projects', $attributes);
-
         $this->get($project->path())
             ->assertSee($attributes['title'])
             ->assertSee($attributes['description'])
@@ -44,11 +43,11 @@ class ProjectsTest extends TestCase
     /** @test */
     public function a_user_can_update_a_project()
     {
-        $this->signIn();
 
-        $project = Project::factory()->create(['owner_id' => auth()->id()]);
+        $project = ProjectFactory::create();
 
-        $this->patch($project->path(),
+        $this->actingAs($project->owner)
+            ->patch($project->path(),
             $attributes = ['title' => 'Changed', 'description' => 'Changed', 'notes' => 'Changed']
         )->assertRedirect($project->path());
 
@@ -80,11 +79,9 @@ class ProjectsTest extends TestCase
     /** @test */
     public function user_can_view_a_project()
     {
-        $this->signIn();
+        $project = ProjectFactory::create();
 
-        $project = Project::factory()->create(['owner_id' => auth()->id()]);
-
-        $this->get('/projects/' . $project->id)
+        $this->actingAs($project->owner)->get('/projects/' . $project->id)
             ->assertSee($project->title)
             ->assertSee(Str::limit($project->description,100));
     }
@@ -136,7 +133,7 @@ class ProjectsTest extends TestCase
 
         $project = Project::factory()->create();
 
-        $this->patch($project->path(), [])->assertStatus(403);
+        $this->patch($project->path())->assertStatus(403);
 
     }
 }
