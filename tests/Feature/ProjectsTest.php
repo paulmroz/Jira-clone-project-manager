@@ -51,7 +51,7 @@ class ProjectsTest extends TestCase
             $attributes = ['title' => 'Changed', 'description' => 'Changed', 'notes' => 'Changed']
         )->assertRedirect($project->path());
 
-        //$this->get($project->path() . '/edit')->assertStatus(200);
+        $this->get($project->path() . '/edit')->assertStatus(200);
 
         $this->assertDatabaseHas('projects', $attributes);
     }
@@ -92,6 +92,7 @@ class ProjectsTest extends TestCase
         $attributes = Project::factory()->raw();
         $this->get('/projects/create')->assertRedirect('login');
 
+
         $this->post('/projects', [$attributes])->assertRedirect('login');
 
     }
@@ -109,6 +110,8 @@ class ProjectsTest extends TestCase
     public function guess_cannot_view_a_single_project()
     {
         $project = Project::factory()->create();
+
+        $this->get($project->path() . '/edit')->assertRedirect('login');
         $this->get('/projects/create')->assertRedirect('login');
 
         $this->get($project->path())->assertRedirect('login');
