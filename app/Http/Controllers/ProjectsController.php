@@ -27,7 +27,14 @@ class ProjectsController extends Controller
 
     public function store()
     {
-        $project = auth()->user()->projects()->create($this->validateRequest());
+
+        $attributes = request()->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'notes' => 'nullable'
+        ]);
+
+        $project = auth()->user()->projects()->create($attributes);
 
         return redirect($project->path());
     }
@@ -49,9 +56,9 @@ class ProjectsController extends Controller
     protected function validateRequest()
     {
         return request()->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'notes' => 'min:3'
+            'title' => 'sometimes|required',
+            'description' => 'sometimes|required',
+            'notes' => 'nullable'
         ]);
     }
 }
