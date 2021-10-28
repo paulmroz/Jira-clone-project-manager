@@ -24,7 +24,8 @@ class TaskFactory extends Factory
     {
         return [
             'body' => $this->faker->sentence,
-            'project_id' =>  Project::factory()
+            'project_id' =>  Project::factory(),
+            'completed' => false
         ];
     }
 }
