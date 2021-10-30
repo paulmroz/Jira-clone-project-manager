@@ -20,6 +20,10 @@ Route::group(['middleware' => 'auth'], function (){
     Route::get('/projects/{project}/edit', [\App\Http\Controllers\ProjectsController::class, 'edit']);
     Route::patch('/projects/{project}', [\App\Http\Controllers\ProjectsController::class, 'update']);
     Route::post('/projects', [\App\Http\Controllers\ProjectsController::class, 'store']);
+    Route::delete('/projects/{project}', [\App\Http\Controllers\ProjectsController::class, 'destroy']);
+
+    //Route::resource('projects', 'ProjectsController');
+
 
 
     Route::post('/projects/{project}/tasks', [\App\Http\Controllers\ProjectTasksController::class, 'store']);
