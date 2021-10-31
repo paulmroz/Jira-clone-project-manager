@@ -23,7 +23,7 @@ Route::group(['middleware' => 'auth'], function (){
     Route::delete('/projects/{project}', [\App\Http\Controllers\ProjectsController::class, 'destroy']);
 
     //Route::resource('projects', 'ProjectsController');
-
+    Route::post('/projects/{project}/invitations', [\App\Http\Controllers\ProjectInvitationsController::class, 'store']);
 
 
     Route::post('/projects/{project}/tasks', [\App\Http\Controllers\ProjectTasksController::class, 'store']);

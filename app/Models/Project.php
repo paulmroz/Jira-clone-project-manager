@@ -5,7 +5,6 @@ namespace App\Models;
 use App\Traits\RecordsActivity;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Arr;
 
 class Project extends Model
 {
@@ -36,5 +35,14 @@ class Project extends Model
         return $this->tasks()->create(compact('body'));
     }
 
+    public function invite(User $user)
+    {
+        $this->members()->attach($user);
+    }
+
+    public function members()
+    {
+        return $this->belongsToMany(User::class, 'project_members')->withTimestamps();
+    }
 
 }
