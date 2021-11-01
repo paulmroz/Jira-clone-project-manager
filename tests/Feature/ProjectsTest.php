@@ -15,18 +15,19 @@ class ProjectsTest extends TestCase
     use WithFaker, RefreshDatabase;
 
     /** @test */
-    public function user_can_create_project()
+    /** @test */
+    public function a_user_can_create_a_project()
     {
-        $this->withExceptionHandling();
+
         $this->signIn();
+
         $this->get('/projects/create')->assertStatus(200);
 
-        $attributes = Project::factory()->raw([
-            'owner_id' => auth()->id(),
+        $attributes = [
             'title' => $this->faker->sentence,
             'description' => $this->faker->sentence,
             'notes' => 'General notes'
-        ]);
+        ];
 
         $response = $this->post('/projects', $attributes);
 
@@ -38,6 +39,7 @@ class ProjectsTest extends TestCase
             ->assertSee($attributes['title'])
             ->assertSee($attributes['description'])
             ->assertSee($attributes['notes']);
+
     }
 
     /** @test */
@@ -48,10 +50,13 @@ class ProjectsTest extends TestCase
         $this->delete($project->path())
             ->assertRedirect('/login');
 
-        $this->signIn();
+        $user = $this->signIn();
 
-        $this->delete($project->path())
-            ->assertStatus(403);
+        $this->delete($project->path())->assertStatus(403);
+
+        $project->invite($user);
+
+        $this->actingAs($user)->delete($project->path())->assertStatus(403);
     }
 
     /** @test */
