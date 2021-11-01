@@ -57,7 +57,7 @@
                     <form action="{{$project->path()}}" method="post">
                         @csrf
                         @method('PATCH')
-                        <textarea class="card w-5/6 mb-6" name="notes">{{$project->notes}}</textarea>
+                        <textarea class="card w-full mb-4" name="notes">{{$project->notes}}</textarea>
                         <div>
                             <button type="submit" class="button">Save</button>
                         </div>
@@ -69,6 +69,10 @@
             <div class="lg:w-1/4 px-3 mt-10">
                 @include('projects.card')
                 @include ('projects.activity.card')
+
+                @can ('manage', $project)
+                    @include ('projects.invite')
+                @endcan
             </div>
         </div>
     </main>
