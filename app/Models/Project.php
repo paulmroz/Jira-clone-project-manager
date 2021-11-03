@@ -30,9 +30,13 @@ class Project extends Model
         return $this->hasMany(Activity::class)->latest();
     }
 
-
     public function addTask($body){
         return $this->tasks()->create(compact('body'));
+    }
+
+    public function addTasks($tasks)
+    {
+        return $this->tasks()->createMany($tasks);
     }
 
     public function invite(User $user)
