@@ -10,3 +10,83 @@
 .card {
     @apply  bg-white p-5 rounded-lg shadow
 }
+
+
+/*//*/
+.dropdown:focus-within .dropdown-menu {
+    opacity:1;
+    transform: translate(0) scale(1);
+    visibility: visible;
+}
+/*//*/
+
+
+
+.profile {
+    @apply relative text-center
+}
+
+.profile img {
+    @apply border-2 border-solid border-red-500 cursor-pointer rounded-full h-16 w-16
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 150px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    transition: all 2s
+}
+
+.dropdown-content a {
+    @apply text-black pt-1 pr-2 no-underline block
+}
+
+.dropdown-content a:hover {
+    @apply bg-white
+}
+
+.dropdown:hover .dropdown-content {
+    @apply block
+}
+
+.profile ul {
+
+    background-color: #fff;
+    width: 200px;
+    border-radius: 10px;
+    right: 25px;
+    top: 7px;
+    position: absolute;
+    padding: 8px;
+    transition: all 0.5s;
+    z-index: 1
+}
+
+.profile ul::before {
+    content: '';
+    position: absolute;
+    background-color: #e50a0a;
+    height: 10px;
+    width: 10px;
+    top: -5px;
+    transform: rotate(45deg)
+}
+
+.profile ul li {
+    list-style: none;
+    text-align: left;
+    font-size: 15px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    transition: all 0.5s;
+    cursor: pointer;
+    border-radius: 4px
+}
+
+.profile ul li:hover {
+    @apply bg-white
+}

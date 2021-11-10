@@ -1,8 +1,24 @@
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
-
-// Variables
-@import 'variables';
+//// Fonts
+//@import url('https://fonts.googleapis.com/css?family=Nunito');
+//
+//// Variables
+//@import 'variables';
 
 // Bootstrap
 //@import '~bootstrap/scss/bootstrap';
+
+
+.dropdown-toggle {
+    > button:focus {
+        outline: 0;
+    }
+}
+
+.dropdown-menu-link {
+    @apply .block .text-default .no-underline .text-sm .leading-loose .px-4;
+
+    &:hover {
+        background: rgba(0, 0, 0, 0.1);
+    }
+}
+
