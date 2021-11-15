@@ -62,7 +62,9 @@
                                                 </div>
                                                 <div class="py-1">
                                                     <a href="/projects" tabindex="0" class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left"  role="menuitem" >Projekty</a>
-                                                    <a href="#" tabindex="1" class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left"  role="menuitem" >Ustawienia</a>
+                                                    @can('edit', auth()->user())
+                                                        <a href="{{auth()->user()->path('edit')}}" tabindex="1" class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left"  role="menuitem">Ustawienia</a>
+                                                    @endcan
                                                 </div>
                                                 <div class="py-1">
                                                     <a tabindex="3" href="{{ route('logout') }}"
@@ -81,7 +83,7 @@
                                     </div>
                                 </div>
                             </div>
-
+                            <img class="inline object-cover w-8 h-8 rounded-full ml-3" src="{{auth()->user()->avatar}}" alt="Profile image"/>
                         @endguest
                     </ul>
                 </div>

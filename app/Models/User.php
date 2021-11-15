@@ -19,7 +19,9 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
+        'avatar',
         'name',
+        'username',
         'email',
         'password',
     ];
@@ -55,5 +57,22 @@ class User extends Authenticatable
                 $query->where('user_id', $this->id);
             })
             ->get();
+    }
+
+    public function path($append = ''){
+
+        $path = "/profiles/" . $this->username;
+
+        return $append ? "{$path}/{$append}" : $path;
+    }
+
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = bcrypt($value);
+    }
+
+    public function getAvatarAttribute($value)
+    {
+        return asset('storage/' . $value);
     }
 }

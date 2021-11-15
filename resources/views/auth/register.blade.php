@@ -13,9 +13,28 @@
 
                 <form class="mt-10" method="POST" action="{{ route('register') }}">
                     @csrf
+
                     <div>
-                        <label for="name" class="block text-xs font-semibold text-gray-600 uppercase">{{ __('Nazwa użytkownika') }}</label>
-                        <input id="name" type="name" name="name" autocomplete="name" autofocus
+                        <label for="username" class="block text-xs font-semibold text-gray-600 uppercase">{{ __('Nazwa użytkownika') }}</label>
+                        <input id="username" type="text" name="username" autocomplete="username" autofocus
+                               class="block w-full py-3 px-1 mt-2
+                        text-gray-800 appearance-none
+                        border-b-2 border-gray-100
+                        focus:text-gray-500 focus:outline-none focus:border-gray-200
+                        @error('username') border-red-900 @enderror"
+                               required />
+
+                        @error('username')
+                        <span class="text-red-500" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+
+                    <div>
+                        <label for="name" class="block text-xs font-semibold text-gray-600 uppercase">{{ __('Imię i nazwisko') }}</label>
+                        <input id="name" type="text" name="name" autocomplete="name" autofocus
                                class="block w-full py-3 px-1 mt-2
                         text-gray-800 appearance-none
                         border-b-2 border-gray-100

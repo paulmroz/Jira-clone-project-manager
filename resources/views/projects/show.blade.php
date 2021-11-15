@@ -9,15 +9,15 @@
             <div class="flex items-center">
                 @foreach ($project->members as $member)
                     <img
-                        src="{{ gravatar_url($member->email) }}"
+                        src="{{ $member->avatar }}"
                         alt="{{ $member->name }}'s avatar"
-                        class="rounded-full w-8 mr-2">
+                        class="rounded-full w-11 h-12 mr-2">
                 @endforeach
 
                 <img
-                    src="{{ gravatar_url($project->owner->email) }}"
+                    src="{{ $project->owner->avatar }}"
                     alt="{{ $project->owner->name }}'s avatar"
-                    class="rounded-full w-8 mr-2">
+                    class="rounded-full w-11 h-12 mr-2">
 
                 <a href="{{ $project->path().'/edit' }}" class="button ml-4">Edit Project</a>
             </div>
