@@ -15,7 +15,10 @@ class ProfilesController extends Controller
 
     public function update(User $user)
     {
-        $attributes = request()->validate([
+
+        $this->prepareAvatar($user);
+
+        request()->validate([
             'username' => [
                 'string',
                 'required',
@@ -24,7 +27,7 @@ class ProfilesController extends Controller
                 Rule::unique('users')->ignore($user),
             ],
             'name' => ['string', 'required', 'max:255'],
-            'avatar' => ['file', 'image', 'dimensions:min_width=100,min_height=200'],
+            'avatar' => ['sometimes', 'file', 'image', 'dimensions:min_width=100,min_height=200'],
             'email' => [
                 'string',
                 'required',
@@ -37,16 +40,30 @@ class ProfilesController extends Controller
 
         $user->name = \request('name');
         $user->username = \request('username');
-        $user->avatar = \request('avatar');
         $user->email = \request('email');
-        $user->avatar = request('avatar')->store('avatars');
 
         if(null !== \request('password')) {
             $user->password = \request('password');
         }
-
         $user->save();
 
         return redirect($user->path('edit'));
+    }
+
+    /**
+     * @param User $user
+     */
+    private function prepareAvatar(User $user): void
+    {
+        $oldAvatar = explode('/', $user->avatar)[5] ?? explode('/', $user->avatar)[4];
+
+        if (
+            \request()->has('avatar')
+            && null !== \request('avatar')
+        ) {
+            $user->avatar = request('avatar')->store('avatars');
+        } else {
+            $user->avatar = 'avatars/' . $oldAvatar;
+        }
     }
 }
