@@ -55,8 +55,8 @@ class User extends Authenticatable
         return Project::where('owner_id', $this->id)
             ->orWhereHas('members', function ($query) {
                 $query->where('user_id', $this->id);
-            })
-            ->get();
+            })->paginate(6);
+            //->get();
     }
 
     public function path($append = ''){

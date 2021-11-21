@@ -1,4 +1,4 @@
-<div class="shadow-lg rounded-xl w-72 md:w-96 p-4 bg-white overflow-hidden">
+<div class="shadow-lg rounded-xl w-72 md:w-96 p-4 bg-white overflow-hidden hover:bg-gray-100">
     <a href="{{$project->path()}}" class="w-full h-full block">
         <div class="flex items-center border-b-2 mb-2 py-2">
             <img class='w-10 h-10 object-cover rounded-full' alt='User avatar' src='{{$project->owner->avatar}}'>
@@ -21,7 +21,7 @@
             </p>
         </div>
         <div class="flex items-center justify-between my-2">
-            <p class="text-gray-300 text-sm">
+            <p class="text-gray-500 text-sm">
                 {{$project->tasks->where('completed','=', 1)->count()}}/{{$project->tasks->count()}} zadań ukończonych
             </p>
         </div>

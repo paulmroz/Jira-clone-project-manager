@@ -28,7 +28,7 @@
             </div>
         @endforelse
     </main>
-
+    {{ $projects->onEachSide(5)->links() }}
     <new-project-modal></new-project-modal>
 
 @endsection
