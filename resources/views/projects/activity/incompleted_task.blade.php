@@ -1,1 +1,1 @@
-{{ $activity->user->name }} incompleted "{{ $activity->subject->body }}"
+{{ $activity->user->name }} anulował ukończenie "{{ $activity->subject->body }}"

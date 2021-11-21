@@ -15,7 +15,7 @@
 </div>
 
 <div class="field mb-6">
-    <label class="label text-sm mb-2 block" for="description">Description</label>
+    <label class="label text-sm mb-2 block" for="description">Opis</label>
 
     <div class="control">
             <textarea
@@ -31,7 +31,7 @@
     <div class="control">
         <button type="submit" class="button is-link mr-2">{{ $buttonText }}</button>
 
-        <a href="{{ $project->path() }}">Cancel</a>
+        <a href="{{ $project->path() }}">Anuluj</a>
     </div>
 </div>
 

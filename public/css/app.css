@@ -31881,16 +31881,42 @@ video {
 }
 
 .button {
-  border-radius: 0.5rem;
+  /*@apply bg-blue-400 text-white no-underline rounded-lg py-2 px-5;*/
+  border-radius: 0.25rem;
+  border-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: rgba(59, 130, 246, var(--tw-border-opacity));
+}
+
+.button:hover {
+  border-color: transparent;
+}
+
+.button {
+  background-color: transparent;
+}
+
+.button:hover {
   --tw-bg-opacity: 1;
-  background-color: rgba(96, 165, 250, var(--tw-bg-opacity));
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
+  background-color: rgba(59, 130, 246, var(--tw-bg-opacity));
+}
+
+.button {
+  padding-left: 1rem;
+  padding-right: 1rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+  font-weight: 600;
+  --tw-text-opacity: 1;
+  color: rgba(29, 78, 216, var(--tw-text-opacity));
+}
+
+.button:hover {
   --tw-text-opacity: 1;
   color: rgba(255, 255, 255, var(--tw-text-opacity));
-  text-decoration: none;
+}
+
+.button {
   box-shadow: 0 2px 7px 0 #b0eaff;
 }
 

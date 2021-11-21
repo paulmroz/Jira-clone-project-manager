@@ -1,1 +1,1 @@
-{{ $activity->user->name }} completed "{{ $activity->subject->body }}"
+{{ $activity->user->name }} zakończył "{{ $activity->subject->body }}"

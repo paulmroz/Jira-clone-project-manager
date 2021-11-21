@@ -19,7 +19,7 @@
                     alt="{{ $project->owner->name }}'s avatar"
                     class="rounded-full w-11 h-12 mr-2">
 
-                <a href="{{ $project->path().'/edit' }}" class="button ml-4">Edit Project</a>
+                <a href="{{ $project->path().'/edit' }}" class="button ml-4">Edytuj Projekt</a>
             </div>
         </div>
     </header>
@@ -59,7 +59,7 @@
                         @method('PATCH')
                         <textarea class="card w-full mb-4" name="notes">{{$project->notes}}</textarea>
                         <div>
-                            <button type="submit" class="button">Save</button>
+                            <button type="submit" class="button">Zapisz</button>
                         </div>
 
                     </form>

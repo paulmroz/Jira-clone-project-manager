@@ -1,4 +1,4 @@
-<div class="card mt-3">
+<div class="card mt-3 w-72 md:w-96 ">
     <ul class="text-xs list-reset">
         @foreach ($project->activity as $activity)
             <li class="{{ $loop->last ? '' : 'mb-1' }}">
