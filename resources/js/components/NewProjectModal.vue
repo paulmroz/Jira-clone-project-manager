@@ -1,12 +1,12 @@
 <template>
     <modal name="new-project" classes="p-10 bg-card rounded-lg" height="auto">
-        <h1 class="font-normal mb-16 text-center text-2xl">Let’s Start Something New</h1>
+        <h1 class="font-normal mb-16 text-center text-2xl">Dodaj nowy projekt!</h1>
 
         <form @submit.prevent="submit">
             <div class="flex">
                 <div class="flex-1 mr-4">
                     <div class="mb-4">
-                        <label for="title" class="text-sm block mb-2">Title</label>
+                        <label for="title" class="text-sm block mb-2">Tytuł</label>
 
                         <input
                             type="text"
@@ -19,7 +19,7 @@
                     </div>
 
                     <div class="mb-4">
-                        <label for="description" class="text-sm block mb-2">Description</label>
+                        <label for="description" class="text-sm block mb-2">Opis</label>
 
                         <textarea
                             id="description"
@@ -34,7 +34,7 @@
 
                 <div class="flex-1 ml-4">
                     <div class="mb-4">
-                        <label class="text-sm block mb-2">Need Some Tasks?</label>
+                        <label class="text-sm block mb-2">Dodaj tutaj zadania</label>
                         <input
                             type="text"
                             class="border border-muted-light mb-2 p-2 text-xs block w-full rounded"
@@ -51,14 +51,14 @@
                             </g>
                         </svg>
 
-                        <span>Add New Task Field</span>
+                        <span>Dodaj zadanie</span>
                     </button>
                 </div>
             </div>
 
             <footer class="flex justify-end">
-                <button type="button" class="button is-outlined mr-4" @click="$modal.hide('new-project')">Cancel</button>
-                <button class="button">Create Project</button>
+                <button type="button" class="button is-outlined mr-4" @click="$modal.hide('new-project')">Anuluj</button>
+                <button class="button">Dodaj</button>
             </footer>
         </form>
     </modal>

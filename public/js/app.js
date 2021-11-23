@@ -42518,7 +42518,7 @@ var render = function () {
     },
     [
       _c("h1", { staticClass: "font-normal mb-16 text-center text-2xl" }, [
-        _vm._v("Let’s Start Something New"),
+        _vm._v("Dodaj nowy projekt!"),
       ]),
       _vm._v(" "),
       _c(
@@ -42541,7 +42541,7 @@ var render = function () {
                     staticClass: "text-sm block mb-2",
                     attrs: { for: "title" },
                   },
-                  [_vm._v("Title")]
+                  [_vm._v("Tytuł")]
                 ),
                 _vm._v(" "),
                 _c("input", {
@@ -42586,7 +42586,7 @@ var render = function () {
                     staticClass: "text-sm block mb-2",
                     attrs: { for: "description" },
                   },
-                  [_vm._v("Description")]
+                  [_vm._v("Opis")]
                 ),
                 _vm._v(" "),
                 _c("textarea", {
@@ -42632,7 +42632,7 @@ var render = function () {
                 { staticClass: "mb-4" },
                 [
                   _c("label", { staticClass: "text-sm block mb-2" }, [
-                    _vm._v("Need Some Tasks?"),
+                    _vm._v("Dodaj tutaj zadania"),
                   ]),
                   _vm._v(" "),
                   _vm._l(_vm.form.tasks, function (task) {
@@ -42713,7 +42713,7 @@ var render = function () {
                     ]
                   ),
                   _vm._v(" "),
-                  _c("span", [_vm._v("Add New Task Field")]),
+                  _c("span", [_vm._v("Dodaj zadanie")]),
                 ]
               ),
             ]),
@@ -42731,10 +42731,10 @@ var render = function () {
                   },
                 },
               },
-              [_vm._v("Cancel")]
+              [_vm._v("Anuluj")]
             ),
             _vm._v(" "),
-            _c("button", { staticClass: "button" }, [_vm._v("Create Project")]),
+            _c("button", { staticClass: "button" }, [_vm._v("Dodaj")]),
           ]),
         ]
       ),

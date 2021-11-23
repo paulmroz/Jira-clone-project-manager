@@ -2,7 +2,6 @@
     <a href="{{$project->path()}}" class="w-full h-full block">
         <div class="flex items-center border-b-2 mb-2 py-2">
             <img class='w-10 h-10 object-cover rounded-full' alt='User avatar' src='{{$project->owner->avatar}}'>
-
             <div class="pl-3">
                 <div class="font-medium">
                     {{$project->owner->name}}

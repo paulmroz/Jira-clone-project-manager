@@ -56,7 +56,6 @@ class User extends Authenticatable
             ->orWhereHas('members', function ($query) {
                 $query->where('user_id', $this->id);
             })->paginate(6);
-            //->get();
     }
 
     public function path($append = ''){
