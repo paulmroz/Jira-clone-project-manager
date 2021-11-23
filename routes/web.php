@@ -33,6 +33,7 @@ Route::group(['middleware' => 'auth'], function (){
     Route::get('/profiles/{user:username}/edit', [App\Http\Controllers\ProfilesController::class, 'edit'])->middleware('can:edit,user');
 
     Route::patch('/profiles/{user:username}', [App\Http\Controllers\ProfilesController::class, 'update']);
+    Route::get('/projects/{project}/activities', [App\Http\Controllers\ProjectActivityController::class, 'index']);
 });
 
 
