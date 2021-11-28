@@ -1,5 +1,5 @@
 <div class="card mt-3 w-72 md:w-96">
-    <h1 class="mb-3">Ostatnie aktualizacje:</h1>
+    <h1 class="mb-3">Dziennik aktywności:</h1>
     <ul class="text-xs list-reset">
         @foreach ($project->activity->slice(0, 15) as $activity)
             <li class="{{ $loop->last ? '' : 'mb-1' }}">

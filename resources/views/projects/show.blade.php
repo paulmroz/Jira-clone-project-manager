@@ -7,25 +7,27 @@
                 <a href="/projects">Projekty</a> / {{$project->title}}
             </p>
             <div class="flex items-center">
-                <div class="flex items-center overflow-hidden mt-2">
-                    @foreach ($project->members as $member)
-                        @if ($loop->first)
+                <a href="#"  @click.prevent="$modal.show('project-members')">
+                    <div class="flex items-center overflow-hidden mt-2">
+                        @foreach ($project->members as $member)
+                            @if ($loop->first)
+                                <img
+                                    src="{{ $member->avatar }}"
+                                    alt="{{ $member->name }}'s avatar"
+                                    class="inline-block h-11 w-11 rounded-full text-white border-2 border-white object-cover object-center">
+                            @else
+                                <img
+                                    src="{{ $member->avatar }}"
+                                    alt="{{ $member->name }}'s avatar"
+                                    class="-ml-2 inline-block h-11 w-11 rounded-full text-white border-2 border-white object-cover object-center">
+                            @endif
+                        @endforeach
                             <img
-                                src="{{ $member->avatar }}"
-                                alt="{{ $member->name }}'s avatar"
-                                class="inline-block h-11 w-11 rounded-full text-white border-2 border-white object-cover object-center">
-                        @else
-                            <img
-                                src="{{ $member->avatar }}"
-                                alt="{{ $member->name }}'s avatar"
-                                class="-ml-2 inline-block h-11 w-11 rounded-full text-white border-2 border-white object-cover object-center">
-                        @endif
-                    @endforeach
-                        <img
-                            src="{{ $project->owner->avatar }}"
-                            alt="{{ $project->owner->name }}'s avatar"
-                            class="rounded-full w-12 h-12 mr-2 border-2 border-red-500">
-                </div>
+                                src="{{ $project->owner->avatar }}"
+                                alt="{{ $project->owner->name }}'s avatar"
+                                class="rounded-full w-12 h-12 mr-2 border-2 border-red-500">
+                    </div>
+                </a>
                 <a href="{{ $project->path().'/edit' }}" class="button ml-4">Edytuj Projekt</a>
             </div>
         </div>
@@ -82,5 +84,6 @@
                 @endcan
             </div>
         </div>
+        <project-members-modal :members= "{{ $project->members }}"></project-members-modal>
     </main>
 @endsection

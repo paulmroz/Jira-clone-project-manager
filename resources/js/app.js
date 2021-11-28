@@ -26,6 +26,7 @@ Vue.use(VModal)
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('new-project-modal', require('./components/NewProjectModal.vue').default);
 Vue.component('search-user-modal', require('./components/SearchUserComponent.vue').default);
+Vue.component('project-members-modal', require('./components/ProjectMembersModal.vue').default);
 
 
 /**

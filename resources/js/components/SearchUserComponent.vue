@@ -21,14 +21,17 @@
 
                 <div v-for="user in filteredUsers">
                     <label class="flex p-4 justify-between items-center hover:bg-gray-100">
-                        <span>{{user}}</span>
+                        <div class="flex items-center">
+                            <img :src=user.avatar class="rounded-full w-12 h-12 mr-2 border-2 border-blue-300">
+                            <span>{{user.name}} | {{user.email}}</span>
+                        </div>
                         <input
                             :key="user.id"
                             type="radio"
-                            class="form-radio "
+                            class="form-radio"
                             name="radio"
                             v-model="form.email"
-                            :value=user
+                            :value=user.email
                             v-on:click="addEmail"
                         />
                     </label>
@@ -78,26 +81,44 @@ export default {
     },
 
     computed: {
+        // filteredUsers(){
+        //     const emailsMembers = this.project.members.map(user => {
+        //           return user.email
+        //     })
+        //
+        //     const usersEmails = this.users.map(user => {
+        //         return user.email
+        //     })
+        //
+        //     const emailsMembersToRemove = new Set(emailsMembers);
+        //
+        //      return usersEmails.filter((email) => {
+        //          return !emailsMembersToRemove.has(email)
+        //      })
+        // }
+
         filteredUsers(){
             const emailsMembers = this.project.members.map(user => {
-                  return user.email
+                return {
+                    'email': user.email,
+                    'avatar':user.avatar,
+                    'name': user.name
+                }
             })
 
             const usersEmails = this.users.map(user => {
-                return user.email
+                return {
+                    'email': user.email,
+                    'avatar':user.avatar,
+                    'name': user.name
+                }
             })
 
-            const emailsMembersToRemove = new Set(emailsMembers);
-
-             return usersEmails.filter((email) => {
-                 return !emailsMembersToRemove.has(email)
-             })
-
-            // return this.users.filter(user => {
-            //     return user.email !== this.project.members.email
-            // })
-            //return [...this.users, ...this.project.members];
-            //return new Set(this.project.members.email);
+            return  usersEmails.filter(function(objFromA) {
+                return !emailsMembers.find(function(objFromB) {
+                    return objFromA.email === objFromB.email
+                })
+            })
         }
     }
 }

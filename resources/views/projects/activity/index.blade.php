@@ -3,7 +3,7 @@
 @section('content')
     <header class="flex items-center mb-3 py-4">
         <div class="w-full flex justify-between items-end">
-            <h1 class="text-gray-500 font-normal">Projekty</h1>
+            <h1 class="text-gray-500 font-normal text-3xl">Wszystkie aktywyności:</h1>
             <a href="{{$activities[0]->project->path()}}" class="button float-right">Powrót</a>
         </div>
     </header>
