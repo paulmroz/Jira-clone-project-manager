@@ -2,16 +2,16 @@
     <h3 class="font-normal text-xl py-4 -ml-5 mb-3 border-l-4 border-blue-light pl-4">
         Zaproś do kolaboracji nad projektem
     </h3>
+    <a class="button float-right text-center" @click.prevent="$modal.show('search-user')">Zaproś</a>
+{{--    <form method="POST" action="{{ $project->path() . '/invitations' }}" >--}}
+{{--        @csrf--}}
 
-    <form method="POST" action="{{ $project->path() . '/invitations' }}" >
-        @csrf
+{{--        <div class="mb-3">--}}
+{{--            <input type="email" name="email" class="border border-grey-light rounded w-full py-2 px-3" placeholder="Email address">--}}
+{{--        </div>--}}
 
-        <div class="mb-3">
-            <input type="email" name="email" class="border border-grey-light rounded w-full py-2 px-3" placeholder="Email address">
-        </div>
-
-        <button type="submit" class="button float-right">Zaproś</button>
-    </form>
-
+{{--        <button type="submit" class="button float-right">Zaproś</button>--}}
+{{--    </form>--}}
+    <search-user-modal :project = "{{ $project }}" ></search-user-modal>
     @include ('errors', ['bag' => 'invitations'])
 </div>

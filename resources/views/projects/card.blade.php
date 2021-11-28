@@ -27,7 +27,13 @@
         <div class="relative pt-1">
             <div class="overflow-hidden h-2 text-xs flex rounded bg-blue-200">
                 <div
-                    style="width: {{$project->tasks->where('completed','=', 1)->count() / $project->tasks->count() * 100 }}%"
+                    style="
+                            @if($project->tasks->count() === 0)
+                                width: 0px
+                            @else
+                                width: {{$project->tasks->where('completed','=', 1)->count() / $project->tasks->count() * 100 }}%
+                            @endif
+                    "
                     class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-600 rounded-full"
                 ></div>
             </div>

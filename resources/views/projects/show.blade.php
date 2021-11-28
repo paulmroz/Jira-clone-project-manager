@@ -7,18 +7,25 @@
                 <a href="/projects">Projekty</a> / {{$project->title}}
             </p>
             <div class="flex items-center">
-                @foreach ($project->members as $member)
-                    <img
-                        src="{{ $member->avatar }}"
-                        alt="{{ $member->name }}'s avatar"
-                        class="rounded-full w-11 h-12 mr-2">
-                @endforeach
-
-                <img
-                    src="{{ $project->owner->avatar }}"
-                    alt="{{ $project->owner->name }}'s avatar"
-                    class="rounded-full w-11 h-12 mr-2">
-
+                <div class="flex items-center overflow-hidden mt-2">
+                    @foreach ($project->members as $member)
+                        @if ($loop->first)
+                            <img
+                                src="{{ $member->avatar }}"
+                                alt="{{ $member->name }}'s avatar"
+                                class="inline-block h-11 w-11 rounded-full text-white border-2 border-white object-cover object-center">
+                        @else
+                            <img
+                                src="{{ $member->avatar }}"
+                                alt="{{ $member->name }}'s avatar"
+                                class="-ml-2 inline-block h-11 w-11 rounded-full text-white border-2 border-white object-cover object-center">
+                        @endif
+                    @endforeach
+                        <img
+                            src="{{ $project->owner->avatar }}"
+                            alt="{{ $project->owner->name }}'s avatar"
+                            class="rounded-full w-12 h-12 mr-2 border-2 border-red-500">
+                </div>
                 <a href="{{ $project->path().'/edit' }}" class="button ml-4">Edytuj Projekt</a>
             </div>
         </div>

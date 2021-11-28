@@ -25,6 +25,8 @@ Vue.use(VModal)
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('new-project-modal', require('./components/NewProjectModal.vue').default);
+Vue.component('search-user-modal', require('./components/SearchUserComponent.vue').default);
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

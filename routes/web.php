@@ -34,6 +34,9 @@ Route::group(['middleware' => 'auth'], function (){
 
     Route::patch('/profiles/{user:username}', [App\Http\Controllers\ProfilesController::class, 'update']);
     Route::get('/projects/{project}/activities', [App\Http\Controllers\ProjectActivityController::class, 'index']);
+
+    Route::get('/users', [App\Http\Controllers\UserController::class, 'getUserList']);
+
 });
 
 
