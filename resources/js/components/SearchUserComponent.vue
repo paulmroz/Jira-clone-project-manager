@@ -51,7 +51,7 @@ export default {
             keyword: null,
             users: [],
             form: new BirdboardForm({
-                email: [],
+                email: '',
             }),
         };
     },
@@ -67,13 +67,32 @@ export default {
                 .catch(error => {});
         },
         async submit() {
-            this.form.submit( this.project.id + '/invitations');
-            this.keyword = '';
-            location.reload();
-            alert("Użytkownik został dodany");
+            if(this.userExistsinMembers(this.keyword)){
+                alert("Użytkownik został już dodany do tego projektu!");
+            } else if(!this.userExistsinUsers(this.keyword)){
+                alert("Użytkownik o podanym adresie email nie istnieje!");
+            } else {
+                this.form.submit( this.project.id + '/invitations');
+                this.keyword = '';
+                location.reload();
+                alert("Użytkownik został dodany");
+            }
         },
+
         addEmail(event) {
             this.keyword = event.target.value;
+        },
+
+        userExistsinMembers(email) {
+            return this.project.members.some(function(el) {
+                return el.email === email;
+            });
+        },
+
+        userExistsinUsers(email) {
+            return this.users.some(function(el) {
+                return el.email === email;
+            });
         }
     },
     mounted: function() {
@@ -81,22 +100,6 @@ export default {
     },
 
     computed: {
-        // filteredUsers(){
-        //     const emailsMembers = this.project.members.map(user => {
-        //           return user.email
-        //     })
-        //
-        //     const usersEmails = this.users.map(user => {
-        //         return user.email
-        //     })
-        //
-        //     const emailsMembersToRemove = new Set(emailsMembers);
-        //
-        //      return usersEmails.filter((email) => {
-        //          return !emailsMembersToRemove.has(email)
-        //      })
-        // }
-
         filteredUsers(){
             const emailsMembers = this.project.members.map(user => {
                 return {

@@ -5417,6 +5417,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['members']
 });
@@ -5494,7 +5500,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       keyword: null,
       users: [],
       form: new _BirdboardForm__WEBPACK_IMPORTED_MODULE_1__["default"]({
-        email: []
+        email: ''
       })
     };
   },
@@ -5523,13 +5529,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _this2.form.submit(_this2.project.id + '/invitations');
+                if (_this2.userExistsinMembers(_this2.keyword)) {
+                  alert("Użytkownik został już dodany do tego projektu!");
+                } else if (!_this2.userExistsinUsers(_this2.keyword)) {
+                  alert("Użytkownik o podanym adresie email nie istnieje!");
+                } else {
+                  _this2.form.submit(_this2.project.id + '/invitations');
 
-                _this2.keyword = '';
-                location.reload();
-                alert("Użytkownik został dodany");
+                  _this2.keyword = '';
+                  location.reload();
+                  alert("Użytkownik został dodany");
+                }
 
-              case 4:
+              case 1:
               case "end":
                 return _context.stop();
             }
@@ -5539,27 +5551,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     addEmail: function addEmail(event) {
       this.keyword = event.target.value;
+    },
+    userExistsinMembers: function userExistsinMembers(email) {
+      return this.project.members.some(function (el) {
+        return el.email === email;
+      });
+    },
+    userExistsinUsers: function userExistsinUsers(email) {
+      return this.users.some(function (el) {
+        return el.email === email;
+      });
     }
   },
   mounted: function mounted() {
     this.getResults('a');
   },
   computed: {
-    // filteredUsers(){
-    //     const emailsMembers = this.project.members.map(user => {
-    //           return user.email
-    //     })
-    //
-    //     const usersEmails = this.users.map(user => {
-    //         return user.email
-    //     })
-    //
-    //     const emailsMembersToRemove = new Set(emailsMembers);
-    //
-    //      return usersEmails.filter((email) => {
-    //          return !emailsMembersToRemove.has(email)
-    //      })
-    // }
     filteredUsers: function filteredUsers() {
       var emailsMembers = this.project.members.map(function (user) {
         return {
@@ -43125,45 +43132,50 @@ var render = function () {
       },
     },
     [
-      _c(
-        "div",
-        [
-          _c("h1", { staticClass: "text-3xl" }, [
-            _vm._v("Uczestnicy projektu:"),
-          ]),
-          _vm._v(" "),
-          _c("hr", { staticClass: "my-4" }),
-          _vm._v(" "),
-          _vm._l(_vm.members, function (user) {
-            return _c("div", { staticClass: "my-3 hover:bg-gray-200" }, [
-              _c("label", [
-                _c(
-                  "div",
-                  { staticClass: "flex justify-between items-center ml-3 p-2" },
-                  [
-                    _c("div", { staticClass: "flex items-center" }, [
-                      _c("img", {
+      _c("div", [
+        _c("h1", { staticClass: "text-3xl" }, [_vm._v("Uczestnicy projektu:")]),
+        _vm._v(" "),
+        _c("hr", { staticClass: "my-4" }),
+        _vm._v(" "),
+        _vm.members.length > 0
+          ? _c(
+              "div",
+              _vm._l(_vm.members, function (user) {
+                return _c("div", { staticClass: "my-3 hover:bg-gray-200" }, [
+                  _c("label", [
+                    _c(
+                      "div",
+                      {
                         staticClass:
-                          "rounded-full w-12 h-12 mr-2 border-2 border-blue-300",
-                        attrs: { src: user.avatar },
-                      }),
-                      _vm._v(" "),
-                      _c("span", [_vm._v(_vm._s(user.name))]),
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      key: user.id,
-                      staticClass: "form-radio",
-                      attrs: { type: "radio", name: "radio" },
-                    }),
-                  ]
-                ),
-              ]),
-            ])
-          }),
-        ],
-        2
-      ),
+                          "flex justify-between items-center ml-3 p-2",
+                      },
+                      [
+                        _c("div", { staticClass: "flex items-center" }, [
+                          _c("img", {
+                            staticClass:
+                              "rounded-full w-12 h-12 mr-2 border-2 border-blue-300",
+                            attrs: { src: user.avatar },
+                          }),
+                          _vm._v(" "),
+                          _c("span", [_vm._v(_vm._s(user.name))]),
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          key: user.id,
+                          staticClass: "form-radio",
+                          attrs: { type: "radio", name: "radio" },
+                        }),
+                      ]
+                    ),
+                  ]),
+                ])
+              }),
+              0
+            )
+          : _c("div", [
+              _c("span", [_vm._v("Jesteś jedynym uczestnikiem projektu")]),
+            ]),
+      ]),
     ]
   )
 }

@@ -15,7 +15,7 @@
                 @include('projects.card')
             </div>
         @empty
-            <div class="bg-white text-base rounded-lg shadow m-auto -brown-400 border border-black flex flex-col">
+            <div class="bg-white text-base rounded-lg shadow m-auto -brown-400 shadow-2xl flex flex-col">
                 <div class="p-4 flex flex-col">
                     <h3 type="element" class="text-4xl">Oops, wygląda na to że nie masz żadnych projektów.</h3>
                     <p type="element" class="my-4 m-auto">Kliknij w link poniżej i rozpocznij swoją przygodę z menadżerem projektów!</p>
