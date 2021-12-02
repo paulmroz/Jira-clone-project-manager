@@ -25,6 +25,7 @@ Route::group(['middleware' => 'auth'], function (){
 
     //Route::resource('projects', 'ProjectsController');
     Route::post('/projects/{project}/invitations', [\App\Http\Controllers\ProjectInvitationsController::class, 'store']);
+    Route::post('/projects/{project}/invitations/delete', [\App\Http\Controllers\ProjectInvitationsController::class, 'delete']);
 
 
     Route::post('/projects/{project}/tasks', [\App\Http\Controllers\ProjectTasksController::class, 'store']);

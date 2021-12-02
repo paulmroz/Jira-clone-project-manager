@@ -84,6 +84,6 @@
                 @endcan
             </div>
         </div>
-        <project-members-modal :members= "{{ $project->members }}"></project-members-modal>
+        <project-members-modal :project="{{$project}}"></project-members-modal>
     </main>
 @endsection

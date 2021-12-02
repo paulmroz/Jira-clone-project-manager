@@ -44,6 +44,11 @@ class Project extends Model
         $this->members()->attach($user);
     }
 
+    public function removeUser(User $user)
+    {
+        $this->members()->detach($user);
+    }
+
     public function members()
     {
         return $this->belongsToMany(User::class, 'project_members')->withTimestamps();

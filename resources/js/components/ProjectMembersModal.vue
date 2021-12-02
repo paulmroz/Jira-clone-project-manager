@@ -4,22 +4,26 @@
             <h1 class="text-3xl">Uczestnicy projektu:</h1>
             <hr class="my-4">
 
-            <div v-if="members.length > 0">
-                <div  v-for="user in members" class="my-3 hover:bg-gray-200" >
-                    <label>
+            <div v-if="project.members.length > 0">
+                <div  v-for="user in project.members" class="my-3 hover:bg-gray-200" >
                         <div class="flex justify-between items-center ml-3 p-2">
                             <div class="flex items-center">
                                 <img :src=user.avatar class="rounded-full w-12 h-12 mr-2 border-2 border-blue-300">
                                 <span>{{user.name}}</span>
                             </div>
+                            <label for="radio">
+                                Usuń
                             <input
                                 :key="user.id"
                                 type="radio"
                                 class="form-radio"
                                 name="radio"
+                                :value=user.email
+                                v-model="form.email"
+                                v-on:change="detachUser"
                             />
+                            </label>
                         </div>
-                    </label>
                 </div>
             </div>
             <div v-else>
@@ -30,8 +34,30 @@
 </template>
 
 <script>
+import BirdboardForm from './BirdboardForm';
+
 export default {
-    props: ['members'],
+    props: ['project'],
+
+    data() {
+        return {
+            form: new BirdboardForm({
+                email: '',
+            }),
+        };
+    },
+    methods: {
+        detachUser: function (event) {
+            this.submit();
+        },
+
+         async submit() {
+            this.form.submit( this.project.id + '/invitations/delete');
+             location.reload();
+             alert("Użytkownik został usunięty");
+        },
+
+    }
 }
 </script>
 
