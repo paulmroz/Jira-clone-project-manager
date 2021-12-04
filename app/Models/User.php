@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use http\Env\Request;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -50,9 +51,10 @@ class User extends Authenticatable
         return $this->hasMany(Project::class, 'owner_id')->latest('updated_at');
     }
 
-    public function accessibleProjects()
+    public function accessibleProjects($search = null)
     {
         return Project::where('owner_id', $this->id)
+            ->where('title', 'like', '%' . request('search') . '%')
             ->orWhereHas('members', function ($query) {
                 $query->where('user_id', $this->id);
             })->paginate(6);

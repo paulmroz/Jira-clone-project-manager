@@ -38,6 +38,7 @@
                                 </li>
                             @endif
                         @else
+                            @yield('search')
                             <div class="bg-white flex flex-col justify-center">
                                 <div class="flex items-center justify-center">
                                     <div class="relative inline-block text-left dropdown">
