@@ -31,6 +31,18 @@
                 @include('projects.card')
             </div>
         @empty
+            @if(request('search'))
+                <div class="bg-white text-base rounded-lg shadow m-auto -brown-400 shadow-2xl flex flex-col">
+                    <div class="p-4 flex flex-col">
+                        <h3 type="element" class="text-2xl">Żaden z projektów nie spełnia wyników wyszukiwania...</h3>
+                        <a
+                            href="/projects"
+                            class="text-white hover:bg-blue-500 bg-blue-400 m-auto my-4 px-6 py-2 text-lg rounded shadow-px-4 border-0">
+                            Powrót
+                        </a>
+                    </div>
+                </div>
+            @else
             <div class="bg-white text-base rounded-lg shadow m-auto -brown-400 shadow-2xl flex flex-col">
                 <div class="p-4 flex flex-col">
                     <h3 type="element" class="text-4xl">Oops, wygląda na to że nie masz żadnych projektów.</h3>
@@ -42,6 +54,7 @@
                     </a>
                 </div>
             </div>
+            @endif
         @endforelse
     </main>
     {{ $projects->onEachSide(5)->links() }}

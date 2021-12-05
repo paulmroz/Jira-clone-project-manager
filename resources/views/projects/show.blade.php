@@ -47,6 +47,11 @@
                                 <div class="flex items-center">
                                     <input class="w-full focus:outline-none {{$task->completed ? 'text-gray-400' : ''}}" type="text"
                                            name="body" value="{{$task->body}}" {{$task->completed ? 'disabled' : ''}}>
+{{--                                    <select name="" id="" class="mx-4 appearance-none" onchange="this.form.submit()">--}}
+{{--                                        <option value="1">Status 1</option>--}}
+{{--                                        <option value="2">Status 2</option>--}}
+{{--                                        <option value="3">Status 3</option>--}}
+{{--                                    </select>--}}
                                     <input type="checkbox" name="completed"
                                            onchange="this.form.submit()" {{ $task->completed ? 'checked': ''}}>
                                 </div>
