@@ -17,7 +17,9 @@ class ProjectsController extends Controller
     {
         $this->authorize('update', $project);
 
-        return view('projects.show', compact('project'));
+        $tasks = $project->tasks()->orderBy('created_at', 'DESC')->paginate(5);
+
+        return view('projects.show', compact('project', 'tasks'));
     }
 
     public function create()

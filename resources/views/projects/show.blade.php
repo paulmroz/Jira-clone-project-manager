@@ -39,14 +39,14 @@
                 <div class="mb-8">
                     <h2 class="text-lg text-gray-500 font-normal mb-3">Zadania</h2>
 
-                    @foreach($project->tasks as $task)
-                        <div class="card mb-3">
+                    @foreach($tasks as $task)
+                        <div class="card mb-3 {{$task->completed ? 'border-2 border-green-600' : ''}}">
                             <form action="{{ $task->path() }}" method="post">
                                 @method('PATCH')
                                 @csrf
-                                <div class="flex">
-                                    <input class="w-full border-0 {{$task->completed ? 'text-gray-400' : ''}}" type="text"
-                                           name="body" value="{{$task->body}}">
+                                <div class="flex items-center">
+                                    <input class="w-full focus:outline-none {{$task->completed ? 'text-gray-400' : ''}}" type="text"
+                                           name="body" value="{{$task->body}}" {{$task->completed ? 'disabled' : ''}}>
                                     <input type="checkbox" name="completed"
                                            onchange="this.form.submit()" {{ $task->completed ? 'checked': ''}}>
                                 </div>
@@ -59,7 +59,7 @@
                             <input placeholder="Dodaj zadanie.." class="w-full" name="body">
                         </form>
                     </div>
-
+                    {!! $tasks->render() !!}
                 </div>
                 <div>
                     <h2 class="text-lg text-gray-500 font-normal mb-3">Notatki</h2>
