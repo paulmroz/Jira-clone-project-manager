@@ -19,22 +19,24 @@
                     </div>
                 </div>
 
-                <div v-for="user in filteredUsers">
-                    <label class="flex p-4 justify-between items-center hover:bg-gray-100">
-                        <div class="flex items-center">
-                            <img :src=user.avatar class="rounded-full w-12 h-12 mr-2 border-2 border-blue-300">
-                            <span>{{user.name}} | {{user.email}}</span>
-                        </div>
-                        <input
-                            :key="user.id"
-                            type="radio"
-                            class="form-radio"
-                            name="radio"
-                            v-model="form.email"
-                            :value=user.email
-                            v-on:click="addEmail"
-                        />
-                    </label>
+                <div class="overflow-auto h-96">
+                    <div v-for="user in filteredUsers">
+                        <label class="flex p-4 justify-between items-center hover:bg-gray-100">
+                            <div class="flex items-center">
+                                <img :src=user.avatar class="rounded-full w-12 h-12 mr-2 border-2 border-blue-300">
+                                <span>{{user.name}} | {{user.email}}</span>
+                            </div>
+                            <input
+                                :key="user.id"
+                                type="radio"
+                                class="form-radio"
+                                name="radio"
+                                v-model="form.email"
+                                :value=user.email
+                                v-on:click="addEmail"
+                            />
+                        </label>
+                    </div>
                 </div>
             </form>
         </div>

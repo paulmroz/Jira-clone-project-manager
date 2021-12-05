@@ -5436,6 +5436,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['project'],
@@ -5496,6 +5497,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
 //
 //
 //
@@ -43187,6 +43190,7 @@ var render = function () {
         _vm.project.members.length > 0
           ? _c(
               "div",
+              { staticClass: "overflow-auto h-96" },
               _vm._l(_vm.project.members, function (user) {
                 return _c("div", { staticClass: "my-3 hover:bg-gray-200" }, [
                   _c(
@@ -43205,36 +43209,40 @@ var render = function () {
                         _c("span", [_vm._v(_vm._s(user.name))]),
                       ]),
                       _vm._v(" "),
-                      _c("label", { attrs: { for: "radio" } }, [
-                        _vm._v(
-                          "\n                            Usuń\n                        "
-                        ),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.form.email,
-                              expression: "form.email",
-                            },
-                          ],
-                          key: user.id,
-                          staticClass: "form-radio",
-                          attrs: { type: "radio", name: "radio" },
-                          domProps: {
-                            value: user.email,
-                            checked: _vm._q(_vm.form.email, user.email),
-                          },
-                          on: {
-                            change: [
-                              function ($event) {
-                                return _vm.$set(_vm.form, "email", user.email)
+                      _c(
+                        "label",
+                        { staticClass: "button", attrs: { for: "user" } },
+                        [
+                          _vm._v(
+                            "\n                            Usuń\n                        "
+                          ),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.form.email,
+                                expression: "form.email",
                               },
-                              _vm.detachUser,
                             ],
-                          },
-                        }),
-                      ]),
+                            key: user.id,
+                            staticClass: "form-radio",
+                            attrs: { type: "radio", id: "user", name: "user" },
+                            domProps: {
+                              value: user.email,
+                              checked: _vm._q(_vm.form.email, user.email),
+                            },
+                            on: {
+                              change: [
+                                function ($event) {
+                                  return _vm.$set(_vm.form, "email", user.email)
+                                },
+                                _vm.detachUser,
+                              ],
+                            },
+                          }),
+                        ]
+                      ),
                     ]
                   ),
                 ])
@@ -43402,56 +43410,62 @@ var render = function () {
               ),
             ]),
             _vm._v(" "),
-            _vm._l(_vm.filteredUsers, function (user) {
-              return _c("div", [
-                _c(
-                  "label",
-                  {
-                    staticClass:
-                      "flex p-4 justify-between items-center hover:bg-gray-100",
-                  },
-                  [
-                    _c("div", { staticClass: "flex items-center" }, [
-                      _c("img", {
-                        staticClass:
-                          "rounded-full w-12 h-12 mr-2 border-2 border-blue-300",
-                        attrs: { src: user.avatar },
-                      }),
-                      _vm._v(" "),
-                      _c("span", [
-                        _vm._v(_vm._s(user.name) + " | " + _vm._s(user.email)),
+            _c(
+              "div",
+              { staticClass: "overflow-auto h-96" },
+              _vm._l(_vm.filteredUsers, function (user) {
+                return _c("div", [
+                  _c(
+                    "label",
+                    {
+                      staticClass:
+                        "flex p-4 justify-between items-center hover:bg-gray-100",
+                    },
+                    [
+                      _c("div", { staticClass: "flex items-center" }, [
+                        _c("img", {
+                          staticClass:
+                            "rounded-full w-12 h-12 mr-2 border-2 border-blue-300",
+                          attrs: { src: user.avatar },
+                        }),
+                        _vm._v(" "),
+                        _c("span", [
+                          _vm._v(
+                            _vm._s(user.name) + " | " + _vm._s(user.email)
+                          ),
+                        ]),
                       ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form.email,
-                          expression: "form.email",
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.email,
+                            expression: "form.email",
+                          },
+                        ],
+                        key: user.id,
+                        staticClass: "form-radio",
+                        attrs: { type: "radio", name: "radio" },
+                        domProps: {
+                          value: user.email,
+                          checked: _vm._q(_vm.form.email, user.email),
                         },
-                      ],
-                      key: user.id,
-                      staticClass: "form-radio",
-                      attrs: { type: "radio", name: "radio" },
-                      domProps: {
-                        value: user.email,
-                        checked: _vm._q(_vm.form.email, user.email),
-                      },
-                      on: {
-                        click: _vm.addEmail,
-                        change: function ($event) {
-                          return _vm.$set(_vm.form, "email", user.email)
+                        on: {
+                          click: _vm.addEmail,
+                          change: function ($event) {
+                            return _vm.$set(_vm.form, "email", user.email)
+                          },
                         },
-                      },
-                    }),
-                  ]
-                ),
-              ])
-            }),
-          ],
-          2
+                      }),
+                    ]
+                  ),
+                ])
+              }),
+              0
+            ),
+          ]
         ),
       ]),
     ]
