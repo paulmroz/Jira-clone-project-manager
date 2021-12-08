@@ -40,20 +40,21 @@
                     <h2 class="text-lg text-gray-500 font-normal mb-3">Zadania</h2>
 
                     @foreach($tasks as $task)
-                        <div class="card mb-3 {{$task->completed ? 'border-2 border-green-600' : ''}}">
+                        <div class="card mb-3 {{($task->status_id === 3) ? 'border-2 border-green-600' : ''}}">
                             <form action="{{ $task->path() }}" method="post">
                                 @method('PATCH')
                                 @csrf
                                 <div class="flex items-center">
-                                    <input class="w-full focus:outline-none {{$task->completed ? 'text-gray-400' : ''}}" type="text"
-                                           name="body" value="{{$task->body}}" {{$task->completed ? 'disabled' : ''}}>
-{{--                                    <select name="" id="" class="mx-4 appearance-none" onchange="this.form.submit()">--}}
-{{--                                        <option value="1">Status 1</option>--}}
-{{--                                        <option value="2">Status 2</option>--}}
-{{--                                        <option value="3">Status 3</option>--}}
-{{--                                    </select>--}}
-                                    <input type="checkbox" name="completed"
-                                           onchange="this.form.submit()" {{ $task->completed ? 'checked': ''}}>
+                                    <input class="w-full focus:outline-none {{($task->status_id === 3) ? 'text-gray-400' : ''}}" type="text"
+                                           name="body" value="{{$task->body}}" {{($task->status_id === 3) ? 'readonly="readonly"' : ''}}>
+                                    <select class="bg-blue-500 font-bold  rounded-md text-white p-2" name="status" id="status" onchange="this.form.submit()">
+                                        @foreach($statuses as $status)
+                                            <option
+                                                class="bg-white text-black"
+                                                value="{{$status->id}}" {{($status->id === $task->status_id)?'selected' : ''}}
+                                            >{{$status->name}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </form>
                         </div>

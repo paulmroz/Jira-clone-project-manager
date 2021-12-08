@@ -2,18 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Project;
-use App\Models\Task;
+use App\Models\Status;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class TaskFactory extends Factory
+class StatusFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Task::class;
+    protected $model = Status::class;
 
     /**
      * Define the model's default state.
@@ -23,10 +22,7 @@ class TaskFactory extends Factory
     public function definition()
     {
         return [
-            'body' => $this->faker->sentence,
-            'project_id' =>  Project::factory(),
-            'status_id' =>  1,
-            'completed' => false
+            'id' => 1
         ];
     }
 }

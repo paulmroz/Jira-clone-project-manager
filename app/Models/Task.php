@@ -34,17 +34,30 @@ class Task extends Model
 
     public function complete()
     {
-        $this->update(['completed' => true]);
+        $this->update(['status_id' => 3]);
 
         $this->recordActivity('completed_task');
     }
 
     public function incomplete()
     {
-        $this->update(['completed' => false]);
+        $this->update(['status_id' => 1]);
 
         $this->recordActivity('incompleted_task');
 
+    }
+
+    public function inprogress()
+    {
+        $this->update(['status_id' => 2]);
+
+        $this->recordActivity('inprogess_task');
+
+    }
+
+    public function status()
+    {
+        return $this->belongsTo(Status::class);
     }
 
     public function activity()

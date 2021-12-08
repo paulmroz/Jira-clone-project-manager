@@ -2,6 +2,7 @@
 
 namespace App\Traits;
 
+use App\Models\Activity;
 use Illuminate\Support\Arr;
 
 trait RecordsActivity

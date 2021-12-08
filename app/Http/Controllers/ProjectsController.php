@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\Status;
 
 class ProjectsController extends Controller
 {
@@ -19,7 +20,9 @@ class ProjectsController extends Controller
 
         $tasks = $project->tasks()->orderBy('created_at', 'DESC')->paginate(5);
 
-        return view('projects.show', compact('project', 'tasks'));
+        $statuses = Status::all();
+
+        return view('projects.show', compact('project', 'tasks', 'statuses'));
     }
 
     public function create()

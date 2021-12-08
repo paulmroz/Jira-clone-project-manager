@@ -20,15 +20,29 @@ class ProjectTasksController extends Controller
     }
 
 
-    public function update(Project $project, Task $task){
-
+    public function update(Project $project, Task $task)
+    {
         $this->authorize('update', $task->project);
 
-        \request()->validate(['body'=>'required']);
+        \request()->validate([
+            'body' => 'required',
+        ]);
 
-        $task->update(['body' => request('body')]);
+        $task->update([
+            'body' => \request('body'),
+        ]);
 
-        request('completed') ? $task->complete() : $task->incomplete();
+        switch (request('status')) {
+            case 1:
+                $task->incomplete();
+                break;
+            case 2:
+                $task->inprogress();
+                break;
+            case 3:
+                $task->complete();
+                break;
+        }
 
         return redirect($project->path());
     }

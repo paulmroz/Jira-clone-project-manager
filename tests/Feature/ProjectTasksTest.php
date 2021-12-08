@@ -71,13 +71,13 @@ class ProjectTasksTest extends TestCase
         $this->actingAs($project->owner)
             ->patch($project->tasks->first()->path(),[
                 'body' => 'changed',
-                'completed' => true
+                'status' => 3
             ]);
 
 
         $this->assertDatabaseHas('tasks',[
             'body' => 'changed',
-            'completed' => true
+            'status_id' => 3
         ]);
 
     }
