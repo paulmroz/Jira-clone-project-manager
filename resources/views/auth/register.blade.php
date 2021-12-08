@@ -16,7 +16,7 @@
 
                     <div>
                         <label for="username" class="block text-xs font-semibold text-gray-600 uppercase">Nazwa użytkownika</label>
-                        <input id="username" type="text" name="username" autocomplete="username" autofocus value="{{ old('name') }}"
+                        <input id="username" type="text" name="username" autocomplete="username" autofocus value="{{ old('username') }}"
                                class="block w-full py-3 px-1 mt-2
                         text-gray-800 appearance-none
                         border-b-2 border-gray-100
@@ -34,7 +34,7 @@
 
                     <div>
                         <label for="name" class="block text-xs font-semibold text-gray-600 uppercase">Imię i nazwisko</label>
-                        <input id="name" type="text" name="name" autocomplete="name" autofocus
+                        <input id="name" type="text" name="name" autocomplete="name" autofocus value="{{ old('name') }}"
                                class="block w-full py-3 px-1 mt-2
                         text-gray-800 appearance-none
                         border-b-2 border-gray-100

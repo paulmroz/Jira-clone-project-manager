@@ -67,10 +67,10 @@ class User extends Authenticatable
         return $append ? "{$path}/{$append}" : $path;
     }
 
-    public function setPasswordAttribute($value)
-    {
-        $this->attributes['password'] = bcrypt($value);
-    }
+//    public function setPasswordAttribute($value)
+//    {
+//        $this->attributes['password'] = bcrypt($value);
+//    }
 
     public function getAvatarAttribute($value)
     {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 
 class ProfilesController extends Controller
@@ -43,7 +44,8 @@ class ProfilesController extends Controller
         $user->email = \request('email');
 
         if(null !== \request('password')) {
-            $user->password = \request('password');
+//            $user->password = \request('password');
+            $user->password = Hash::make(\request('password'));
         }
         $user->save();
 
