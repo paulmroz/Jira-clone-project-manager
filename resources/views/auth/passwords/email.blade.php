@@ -14,13 +14,13 @@
                 bg-white rounded-lg shadow-md lg:shadow-lg">
 
                 <h2 class="text-center font-semibold text-3xl lg:text-4xl text-gray-800">
-                    {{ __('Resetuj hasło') }}
+                    Resetuj hasło
                 </h2>
 
                 <form class="mt-10" method="POST" action="{{ route('password.email') }}">
                     @csrf
                     <div>
-                        <label for="email" class="block text-xs font-semibold text-gray-600 uppercase">{{ __('Adres e-Mail') }}</label>
+                        <label for="email" class="block text-xs font-semibold text-gray-600 uppercase">Adres e-Mail</label>
                         <input id="email" type="email" name="email" autocomplete="email" autofocus
                                class="block w-full py-3 px-1 mt-2
                             text-gray-800 appearance-none
@@ -41,7 +41,7 @@
                             class="w-full py-3 mt-10 bg-gray-800 rounded-sm
                         font-medium text-white uppercase
                         focus:outline-none hover:bg-gray-700 hover:shadow-none">
-                        {{ __('Wyślij link resetujący hasło') }}
+                        Wyślij link resetujący hasło
                     </button>
                 </form>
             </div>

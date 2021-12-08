@@ -17,8 +17,8 @@
                     <input type="hidden" name="token" value="{{ $token }}">
 
                     <div>
-                        <label for="email" class="block text-xs font-semibold text-gray-600 uppercase">{{ __('Adres e-Mail') }}</label>
-                        <input id="email" type="email" name="email" autocomplete="email" autofocus
+                        <label for="email" class="block text-xs font-semibold text-gray-600 uppercase">Adres e-Mail</label>
+                        <input id="email" type="email" name="email" autocomplete="email" autofocus value="{{ $email ?? old('email') }}"
                                class="block w-full py-3 px-1 mt-2
                             text-gray-800 appearance-none
                             border-b-2 border-gray-100
@@ -34,7 +34,7 @@
                     </div>
 
                     <div>
-                        <label for="password" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">{{ __('Hasło') }}</label>
+                        <label for="password" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">Hasło</label>
                         <input id="password" type="password" name="password" autocomplete="new-password"
                                class="block w-full py-3 px-1 mt-2 mb-4
                             text-gray-800 appearance-none
@@ -44,15 +44,15 @@
                                required />
 
                         @error('password')
-                        <span class="text-red-500" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
+                            <span class="text-red-500" role="alert">
+                                        <strong>{{ $message }}</strong>
+                            </span>
                         @enderror
                     </div>
 
                     <div>
-                        <label for="password-confirm" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">{{ __('Powtórz hasło') }}</label>
-                        <input id="password-confirm" type="password" name="password-confirm" autocomplete="new-password"
+                        <label for="password-confirm" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">Powtórz hasło</label>
+                        <input id="password-confirm" type="password" name="password_confirmation" autocomplete="new-password"
                                class="block w-full py-3 px-1 mt-2 mb-4
                             text-gray-800 appearance-none
                             border-b-2 border-gray-100
@@ -65,7 +65,7 @@
                             class="w-full py-3 mt-10 bg-gray-800 rounded-sm
                         font-medium text-white uppercase
                         focus:outline-none hover:bg-gray-700 hover:shadow-none">
-                        {{ __('Resetuj hasło') }}
+                        Resetuj hasło
                     </button>
                 </form>
             </div>

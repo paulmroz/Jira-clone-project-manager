@@ -13,6 +13,7 @@ class InvitationsTest extends TestCase
 {
     use RefreshDatabase;
 
+    /** @test */
     function non_owners_may_not_invite_users()
     {
         $project = ProjectFactory::create();

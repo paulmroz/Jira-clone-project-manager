@@ -15,8 +15,8 @@
                     @csrf
 
                     <div>
-                        <label for="username" class="block text-xs font-semibold text-gray-600 uppercase">{{ __('Nazwa użytkownika') }}</label>
-                        <input id="username" type="text" name="username" autocomplete="username" autofocus
+                        <label for="username" class="block text-xs font-semibold text-gray-600 uppercase">Nazwa użytkownika</label>
+                        <input id="username" type="text" name="username" autocomplete="username" autofocus value="{{ old('name') }}"
                                class="block w-full py-3 px-1 mt-2
                         text-gray-800 appearance-none
                         border-b-2 border-gray-100
@@ -33,7 +33,7 @@
 
 
                     <div>
-                        <label for="name" class="block text-xs font-semibold text-gray-600 uppercase">{{ __('Imię i nazwisko') }}</label>
+                        <label for="name" class="block text-xs font-semibold text-gray-600 uppercase">Imię i nazwisko</label>
                         <input id="name" type="text" name="name" autocomplete="name" autofocus
                                class="block w-full py-3 px-1 mt-2
                         text-gray-800 appearance-none
@@ -50,8 +50,8 @@
                     </div>
 
                     <div>
-                        <label for="email" class="block text-xs font-semibold text-gray-600 uppercase">{{ __('Adres e-Mail') }}</label>
-                        <input id="email" type="email" name="email" autocomplete="email" autofocus
+                        <label for="email" class="block text-xs font-semibold text-gray-600 uppercase">Adres e-Mail</label>
+                        <input id="email" type="email" name="email" autocomplete="email" autofocus value="{{ old('email') }}"
                                class="block w-full py-3 px-1 mt-2
                         text-gray-800 appearance-none
                         border-b-2 border-gray-100
@@ -67,7 +67,7 @@
                     </div>
 
                     <div>
-                        <label for="password" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">{{ __('Hasło') }}</label>
+                        <label for="password" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">Hasło</label>
                         <input id="password" type="password" name="password" autocomplete="current-password"
                                class="block w-full py-3 px-1 mt-2 mb-4
                         text-gray-800 appearance-none
@@ -84,7 +84,7 @@
                     </div>
 
                     <div>
-                        <label for="password-confirm"class="block mt-2 text-xs font-semibold text-gray-600 uppercase">{{ __('Powtórz hasło') }}</label>
+                        <label for="password-confirm"class="block mt-2 text-xs font-semibold text-gray-600 uppercase">Powtórz hasło</label>
                         <input id="password-confirm" type="password"  name="password_confirmation"  autocomplete="new-password"
                                class="block w-full py-3 px-1 mt-2 mb-4
                         text-gray-800 appearance-none
@@ -98,15 +98,14 @@
                             class="w-full py-3 mt-10 bg-gray-800 rounded-sm
                     font-medium text-white uppercase
                     focus:outline-none hover:bg-gray-700 hover:shadow-none">
-                        {{ __('Zarejestruj się') }}
+                        Zarejestruj się
                     </button>
-
-                    <div class="sm:flex sm:flex-wrap mt-8 sm:mb-4 text-sm text-center">
-                        <a href="{{ route('login') }}" class="flex-1 text-gray-500 text-md mx-4 my-1 sm:my-auto">
-                            Zaloguj się
-                        </a>
-                    </div>
                 </form>
+                <div class="sm:flex sm:flex-wrap mt-8 sm:mb-4 text-sm text-center">
+                    <a href="{{ route('login') }}" class="flex-1 text-gray-500 text-md mx-4 my-1 sm:my-auto">
+                        Zaloguj się
+                    </a>
+                </div>
             </div>
         </div>
     </div>

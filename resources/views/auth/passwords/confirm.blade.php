@@ -14,7 +14,7 @@
             <form class="mt-10" method="POST" action="{{ route('password.confirm') }}">
                 @csrf
                 <div>
-                    <label for="password" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">{{ __('Potwierdź hasło aby kontynuować') }}</label>
+                    <label for="password" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">Potwierdź hasło aby kontynuować</label>
                     <input id="password" type="password" name="password" autocomplete="current-password"
                            class="block w-full py-3 px-1 mt-2 mb-4
                         text-gray-800 appearance-none
@@ -34,13 +34,13 @@
                         class="w-full py-3 mt-10 bg-gray-800 rounded-sm
                     font-medium text-white uppercase
                     focus:outline-none hover:bg-gray-700 hover:shadow-none">
-                    {{ __('Potwierdź hasło') }}
+                    Potwierdź hasło
                 </button>
 
                 <div class="sm:flex sm:flex-wrap mt-8 sm:mb-4 text-sm text-center">
                     @if (Route::has('password.request'))
                         <a class="flex-1 underline" href="{{ route('password.request') }}">
-                            {{ __('Przypomnij hasło') }}
+                            Przypomnij hasło
                         </a>
                     @endif
 

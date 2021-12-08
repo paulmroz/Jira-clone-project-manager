@@ -12,10 +12,10 @@
                 </h2>
 
                 <form class="mt-10" method="POST" action="{{ route('login') }}">
-                @csrf
+                    @csrf
                     <div>
-                        <label for="email" class="block text-xs font-semibold text-gray-600 uppercase">{{ __('Adres e-Mail') }}</label>
-                        <input id="email" type="email" name="email" autocomplete="email" autofocus
+                        <label for="email" class="block text-xs font-semibold text-gray-600 uppercase">Adres e-Mail</label>
+                        <input id="email" type="email" name="email" value="{{ old('email') }}" autocomplete="email" autofocus
                                class="block w-full py-3 px-1 mt-2
                         text-gray-800 appearance-none
                         border-b-2 border-gray-100
@@ -31,8 +31,8 @@
                     </div>
 
                     <div>
-                        <label for="password" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">{{ __('Hasło') }}</label>
-                        <input id="password" type="password" name="password" autocomplete="current-password"
+                        <label for="password" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">Hasło</label>
+                        <input id="password" type="password" name="password"
                                class="block w-full py-3 px-1 mt-2 mb-4
                         text-gray-800 appearance-none
                         border-b-2 border-gray-100
@@ -50,35 +50,34 @@
                     <div>
                         <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
-                        <label class="form-check-label" for="remember">
-                            {{ __('Zapamiętaj mnie') }}
-                        </label>
+                        <label class="form-check-label" for="remember">Zapamiętaj mnie</label>
                     </div>
 
                     <button type="submit"
                             class="w-full py-3 mt-10 bg-gray-800 rounded-sm
                     font-medium text-white uppercase
                     focus:outline-none hover:bg-gray-700 hover:shadow-none">
-                        {{ __('Zaloguj się') }}
+                        Zaloguj się
                     </button>
 
-                    <div class="sm:flex sm:flex-wrap mt-8 sm:mb-4 text-sm text-center">
-                        @if (Route::has('password.request'))
-                            <a class="flex-2 underline" href="{{ route('password.request') }}">
-                                {{ __('Przypomnij hasło') }}
-                            </a>
-                        @endif
-
-                        <p class="flex-1 text-gray-500 text-md mx-4 my-1 sm:my-auto">
-                            albo
-                        </p>
-
-                        <a href="{{ route('register') }}" class="flex-2 underline">
-                            Zarejestruj się
-                        </a>
-
-                    </div>
                 </form>
+
+                <div class="sm:flex sm:flex-wrap mt-8 sm:mb-4 text-sm text-center">
+                    @if (Route::has('password.request'))
+                        <a class="flex-2 underline" href="{{ route('password.request') }}">
+                            {{ __('Przypomnij hasło') }}
+                        </a>
+                    @endif
+
+                    <p class="flex-1 text-gray-500 text-md mx-4 my-1 sm:my-auto">
+                        albo
+                    </p>
+
+                    <a href="{{ route('register') }}" class="flex-2 underline">
+                        Zarejestruj się
+                    </a>
+
+                </div>
             </div>
         </div>
     </div>
