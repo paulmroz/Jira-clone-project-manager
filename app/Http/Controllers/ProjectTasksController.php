@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use App\Models\Task;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ProjectTasksController extends Controller
@@ -42,6 +43,21 @@ class ProjectTasksController extends Controller
             case 3:
                 $task->complete();
                 break;
+        }
+
+        return redirect($project->path());
+    }
+
+    public function assignUser(Project $project, Task $task)
+    {
+        $this->authorize('update', $task->project);
+
+        if(null != User::find(\request('member'))) {
+            $task->update([
+                'user_id' => \request('member'),
+            ]);
+        } else {
+            abort(403, 'Unauthorized action.');
         }
 
         return redirect($project->path());

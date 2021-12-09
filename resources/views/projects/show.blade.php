@@ -40,6 +40,23 @@
                     <h2 class="text-lg text-gray-500 font-normal mb-3">Zadania</h2>
 
                     @foreach($tasks as $task)
+                        <div class="bg-blue-200 d-inline px-3 py-2 font-medium text-lg flex">
+
+                            <span class="mr-3">Przypisana osoba:</span>
+                            <form action="{{ $task->path() . '/assignuser' }}" method="post" class="flex-1">
+                                @method('PATCH')
+                                @csrf
+                                <select name="member" id="member" onchange="this.form.submit()" class="w-full">
+                                    @if(!$task->user_id)
+                                        <option>Brak przypisanej osoby</option>
+                                    @endif
+                                        <option value="{{$project->owner->id}}">{{$project->owner->name}}</option>
+                                    @foreach($project->members as $member)
+                                        <option value="{{$member->id}}" {{($member->id === $task->user_id)? 'selected' : ''}}>{{$member->name}}</option>
+                                    @endforeach
+                                </select>
+                            </form>
+                        </div>
                         <div class="card mb-3 {{($task->status_id === 3) ? 'border-2 border-green-600' : ''}}">
                             <form action="{{ $task->path() }}" method="post">
                                 @method('PATCH')
@@ -91,5 +108,6 @@
             </div>
         </div>
         <project-members-modal :project="{{$project}}"></project-members-modal>
+        <assign-user-modal></assign-user-modal>
     </main>
 @endsection

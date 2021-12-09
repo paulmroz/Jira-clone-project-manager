@@ -30,6 +30,7 @@ Route::group(['middleware' => 'auth'], function (){
 
     Route::post('/projects/{project}/tasks', [\App\Http\Controllers\ProjectTasksController::class, 'store']);
     Route::patch('/projects/{project}/tasks/{task}', [\App\Http\Controllers\ProjectTasksController::class, 'update']);
+    Route::patch('/projects/{project}/tasks/{task}/assignuser', [\App\Http\Controllers\ProjectTasksController::class, 'assignUser']);
 
     Route::get('/profiles/{user:username}/edit', [App\Http\Controllers\ProfilesController::class, 'edit'])->middleware('can:edit,user');
 
