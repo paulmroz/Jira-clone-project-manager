@@ -47,7 +47,7 @@
                                 <div class="flex items-center">
                                     <input class="w-full focus:outline-none {{($task->status_id === 3) ? 'text-gray-400' : ''}}" type="text"
                                            name="body" value="{{$task->body}}" {{($task->status_id === 3) ? 'readonly="readonly"' : ''}}>
-                                    <select class="bg-blue-500 font-bold  rounded-md text-white p-2" name="status" id="status" onchange="this.form.submit()">
+                                    <select class="bg-blue-600 font-bold rounded-sm text-white p-2" name="status" id="status" onchange="this.form.submit()">
                                         @foreach($statuses as $status)
                                             <option
                                                 class="bg-white text-black"
