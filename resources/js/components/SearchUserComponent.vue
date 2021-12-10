@@ -103,7 +103,9 @@ export default {
 
     computed: {
         filteredUsers(){
-            const emailsMembers = this.project.members.map(user => {
+            const allProjectMember = [...this.project.members, this.project.owner];
+
+            const emailsMembers = allProjectMember.map(user => {
                 return {
                     'email': user.email,
                     'avatar':user.avatar,

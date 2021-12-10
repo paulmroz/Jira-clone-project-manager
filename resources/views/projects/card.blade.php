@@ -43,7 +43,7 @@
                     <form method="POST" action="{{ $project->path() }}" class="text-right">
                         @method('DELETE')
                         @csrf
-                        <button type="submit" class="button">Usuń</button>
+                        <button type="submit" class="button" onclick="return confirm('Czy jesteś pewny że chcesz usunąć projekt?')">Usuń</button>
                     </form>
                 </footer>
         @endcan
