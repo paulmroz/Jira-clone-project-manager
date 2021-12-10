@@ -11,7 +11,7 @@
                                 <img :src=user.avatar class="rounded-full w-12 h-12 mr-2 border-2 border-blue-300">
                                 <span>{{user.name}}</span>
                             </div>
-                            <label for="user" class="button">
+                            <label for="user" class="button" v-if="projectOwner">
                                 Usuń
                             <input
                                 :key="user.id"
@@ -38,7 +38,7 @@
 import BirdboardForm from './BirdboardForm';
 
 export default {
-    props: ['project'],
+    props: ['project' , 'user'],
 
     data() {
         return {
@@ -57,7 +57,12 @@ export default {
              location.reload();
              alert("Użytkownik został usunięty");
         },
+    },
 
+    computed:{
+        projectOwner(){
+            return this.project.owner.id === this.user.id;
+        }
     }
 }
 </script>

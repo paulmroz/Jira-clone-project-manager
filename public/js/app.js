@@ -5439,7 +5439,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['project'],
+  props: ['project', 'user'],
   data: function data() {
     return {
       form: new _BirdboardForm__WEBPACK_IMPORTED_MODULE_1__["default"]({
@@ -5471,6 +5471,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee);
       }))();
+    }
+  },
+  computed: {
+    projectOwner: function projectOwner() {
+      return this.project.owner.id === this.user.id;
     }
   }
 });
@@ -43222,40 +43227,50 @@ var render = function () {
                         _c("span", [_vm._v(_vm._s(user.name))]),
                       ]),
                       _vm._v(" "),
-                      _c(
-                        "label",
-                        { staticClass: "button", attrs: { for: "user" } },
-                        [
-                          _vm._v(
-                            "\n                            Usuń\n                        "
-                          ),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.form.email,
-                                expression: "form.email",
-                              },
-                            ],
-                            key: user.id,
-                            staticClass: "form-radio",
-                            attrs: { type: "radio", id: "user", name: "user" },
-                            domProps: {
-                              value: user.email,
-                              checked: _vm._q(_vm.form.email, user.email),
-                            },
-                            on: {
-                              change: [
-                                function ($event) {
-                                  return _vm.$set(_vm.form, "email", user.email)
+                      _vm.projectOwner
+                        ? _c(
+                            "label",
+                            { staticClass: "button", attrs: { for: "user" } },
+                            [
+                              _vm._v(
+                                "\n                            Usuń\n                        "
+                              ),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form.email,
+                                    expression: "form.email",
+                                  },
+                                ],
+                                key: user.id,
+                                staticClass: "form-radio",
+                                attrs: {
+                                  type: "radio",
+                                  id: "user",
+                                  name: "user",
                                 },
-                                _vm.detachUser,
-                              ],
-                            },
-                          }),
-                        ]
-                      ),
+                                domProps: {
+                                  value: user.email,
+                                  checked: _vm._q(_vm.form.email, user.email),
+                                },
+                                on: {
+                                  change: [
+                                    function ($event) {
+                                      return _vm.$set(
+                                        _vm.form,
+                                        "email",
+                                        user.email
+                                      )
+                                    },
+                                    _vm.detachUser,
+                                  ],
+                                },
+                              }),
+                            ]
+                          )
+                        : _vm._e(),
                     ]
                   ),
                 ])

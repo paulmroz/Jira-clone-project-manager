@@ -104,7 +104,6 @@
                 @endcan
             </div>
         </div>
-        <project-members-modal :project="{{$project}}"></project-members-modal>
-        <assign-user-modal></assign-user-modal>
+        <project-members-modal :project="{{$project}}" :user="{{auth()->user()}}"></project-members-modal>
     </main>
 @endsection
