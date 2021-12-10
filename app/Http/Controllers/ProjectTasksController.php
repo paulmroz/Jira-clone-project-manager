@@ -52,6 +52,14 @@ class ProjectTasksController extends Controller
     {
         $this->authorize('update', $task->project);
 
+        if(\request('member') === 'delete'){
+            $task->update([
+                'user_id' => null,
+            ]);
+
+            return redirect($project->path());
+        }
+
         if(null != User::find(\request('member'))) {
             $task->update([
                 'user_id' => \request('member'),

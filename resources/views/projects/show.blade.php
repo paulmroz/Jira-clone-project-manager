@@ -41,30 +41,27 @@
 
                     @foreach($tasks as $task)
                         <div class="bg-blue-200 d-inline px-3 py-2 font-medium text-lg flex">
-
                             <span class="mr-3">Przypisana osoba:</span>
                             <form action="{{ $task->path() . '/assignuser' }}" method="post" class="flex-1">
                                 @method('PATCH')
                                 @csrf
                                 <select name="member" id="member" onchange="this.form.submit()" class="w-full">
-                                    @if(!$task->user_id)
-                                        <option>Brak przypisanej osoby</option>
-                                    @endif
-                                        <option value="{{$project->owner->id}}">{{$project->owner->name}}</option>
+                                    <option value="delete" {{(!$task->user_id) ? 'selected' : '' }}>Brak przypisanej osoby</option>
+                                    <option value="{{$project->owner->id}}" {{($project->owner->id === $task->user_id) ? 'selected' : '' }}>{{$project->owner->name}}</option>
                                     @foreach($project->members as $member)
-                                        <option value="{{$member->id}}" {{($member->id === $task->user_id)? 'selected' : ''}}>{{$member->name}}</option>
+                                        <option value="{{$member->id}}" {{($member->id === $task->user_id) ? 'selected' : ''}}>{{$member->name}}</option>
                                     @endforeach
                                 </select>
                             </form>
                         </div>
-                        <div class="card mb-3 {{($task->status_id === 3) ? 'border-2 border-green-600' : ''}}">
+                        <div class="card mb-9 {{($task->status_id === 3) ? 'border-2 border-green-600' : ''}}">
                             <form action="{{ $task->path() }}" method="post">
                                 @method('PATCH')
                                 @csrf
                                 <div class="flex items-center">
                                     <input class="w-full focus:outline-none {{($task->status_id === 3) ? 'text-gray-400' : ''}}" type="text"
                                            name="body" value="{{$task->body}}" {{($task->status_id === 3) ? 'readonly="readonly"' : ''}}>
-                                    <select class="bg-blue-600 font-bold rounded-sm text-white p-2" name="status" id="status" onchange="this.form.submit()">
+                                    <select class="font-bold rounded-sm text-white p-2 {{($task->status_id === 3) ? 'bg-green-600' : 'bg-blue-600'}}" name="status" id="status" onchange="this.form.submit()">
                                         @foreach($statuses as $status)
                                             <option
                                                 class="bg-white text-black"

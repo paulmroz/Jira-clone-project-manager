@@ -3,7 +3,7 @@
     <div class="relative mx-auto text-gray-600 mr-2">
         <form action="/projects" method="GET">
             <input class="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
-               type="search" name="search" placeholder="Search">
+               type="search" name="search" placeholder="Search" value="{{ request('search') }}">
         </form>
         <button type="submit" class="absolute right-0 top-0 mt-3 mr-3">
             <svg class="text-gray-600 h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg"

@@ -21,7 +21,7 @@
         </div>
         <div class="flex items-center justify-between my-2">
             <p class="text-gray-500 text-sm">
-                {{$project->tasks->where('completed','=', 1)->count()}}/{{$project->tasks->count()}} zadań ukończonych
+                {{$project->tasks->where('status_id','=', 3)->count()}}/{{$project->tasks->count()}} zadań ukończonych
             </p>
         </div>
         <div class="relative pt-1">
@@ -31,7 +31,7 @@
                             @if($project->tasks->count() === 0)
                                 width: 0px
                             @else
-                                width: {{$project->tasks->where('completed','=', 1)->count() / $project->tasks->count() * 100 }}%
+                                width: {{$project->tasks->where('status_id','=', 3)->count() / $project->tasks->count() * 100 }}%
                             @endif
                     "
                     class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-600 rounded-full"
