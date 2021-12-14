@@ -13,9 +13,26 @@ class ProjectTasksController extends Controller
     {
         $this->authorize('update', $project);
 
-
         \request()->validate(['body'=>'required']);
+
         $project->addTask(\request('body'));
+
+        return redirect($project->path());
+    }
+
+    public function updateStatus(Project $project, Task $task)
+    {
+        switch (request('status')) {
+            case 1:
+                $task->incomplete();
+                break;
+            case 2:
+                $task->inprogress();
+                break;
+            case 3:
+                $task->complete();
+                break;
+        }
 
         return redirect($project->path());
     }
@@ -33,17 +50,6 @@ class ProjectTasksController extends Controller
             'body' => \request('body'),
         ]);
 
-        switch (request('status')) {
-            case 1:
-                $task->incomplete();
-                break;
-            case 2:
-                $task->inprogress();
-                break;
-            case 3:
-                $task->complete();
-                break;
-        }
 
         return redirect($project->path());
     }
@@ -69,5 +75,17 @@ class ProjectTasksController extends Controller
         }
 
         return redirect($project->path());
+    }
+
+    public function delete(Project $project, Task $task){
+
+        $this->authorize('update', $project);
+
+        $task->update([
+            'deleted' => 1,
+        ]);
+
+        return redirect($project->path());
+
     }
 }

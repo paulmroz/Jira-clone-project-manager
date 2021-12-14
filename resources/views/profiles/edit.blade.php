@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <form method="POST" action="{{ $user->path() }}" enctype="multipart/form-data">
+    <h2 class="text-2xl text-gray-900 my-5">Ustawienia</h2>
+    <form method="POST" action="{{ $user->path() }}" enctype="multipart/form-data" class="card">
         @csrf
         @method('PATCH')
 
@@ -9,10 +10,10 @@
             <label class="block mb-2 uppercase font-bold text-xs text-gray-700"
                    for="name"
             >
-                Name
+                Nazwa
             </label>
 
-            <input class="border border-gray-400 p-2 w-full"
+            <input class="border border-gray-400 p-2 w-full rounded-lg"
                    type="text"
                    name="name"
                    id="name"
@@ -29,10 +30,10 @@
             <label class="block mb-2 uppercase font-bold text-xs text-gray-700"
                    for="username"
             >
-                Username
+                Nazwa użytkownika
             </label>
 
-            <input class="border border-gray-400 p-2 w-full"
+            <input class="border border-gray-400 p-2 w-full rounded-lg"
                    type="text"
                    name="username"
                    id="username"
@@ -49,11 +50,11 @@
             <label class="block mb-2 uppercase font-bold text-xs text-gray-700"
                    for="avatar"
             >
-                Avatar
+                Awatar
             </label>
 
             <div class="flex">
-                <input class="border border-gray-400 p-2 w-full"
+                <input class="border border-gray-400 p-2 w-full rounded-lg"
                        type="file"
                        name="avatar"
                        id="avatar"
@@ -62,6 +63,7 @@
                 <img src="{{ $user->avatar }}"
                      alt="your avatar"
                      width="40"
+                     height="40"
                 >
             </div>
 
@@ -75,10 +77,10 @@
             <label class="block mb-2 uppercase font-bold text-xs text-gray-700"
                    for="email"
             >
-                Email
+                Adre-Email
             </label>
 
-            <input class="border border-gray-400 p-2 w-full"
+            <input class="border border-gray-400 p-2 w-full rounded-lg"
                    type="email"
                    name="email"
                    id="email"
@@ -95,10 +97,10 @@
             <label class="block mb-2 uppercase font-bold text-xs text-gray-700"
                    for="password"
             >
-                Password
+                Hasło
             </label>
 
-            <input class="border border-gray-400 p-2 w-full"
+            <input class="border border-gray-400 p-2 w-full rounded-lg"
                    type="password"
                    name="password"
                    id="password"
@@ -113,10 +115,10 @@
             <label class="block mb-2 uppercase font-bold text-xs text-gray-700"
                    for="password_confirmation"
             >
-                Password Confirmation
+                Potwierdź hasło
             </label>
 
-            <input class="border border-gray-400 p-2 w-full"
+            <input class="border border-gray-400 p-2 w-full rounded-lg"
                    type="password"
                    name="password_confirmation"
                    id="password_confirmation"
@@ -127,11 +129,9 @@
             @enderror
         </div>
 
-        <div class="mb-6">
-            <button type="submit"
-                    class="bg-blue-400 text-white rounded py-2 px-4 hover:bg-blue-500"
-            >
-                Submit
+        <div class="mb-6 flex justify-end">
+            <button type="submit" class="button">
+                Zapisz
             </button>
         </div>
     </form>

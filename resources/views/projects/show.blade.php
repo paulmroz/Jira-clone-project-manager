@@ -37,8 +37,40 @@
         <div class="lg:flex -mx-3">
             <div class="lg:w-3/4 px-3 mb-6">
                 <div class="mb-8">
-                    <h2 class="text-lg text-gray-500 font-normal mb-3">Zadania</h2>
+                        <h2 class="text-lg text-gray-500 font-normal mb-3">Zadania</h2>
+                        <form action="{{$project->path()}}" class="p-3 mb-5 bg-blue-100 flex justify-between items-center" method="GET">
+                            @csrf
+                            <div>
+                                <span class="m-3">Filtruj po:</span>
+                                <select name="sortBy" id="sortBy">
+                                    <option value="1">Wszystkie</option>
+                                    <option value="2">Moje zadania</option>
+                                    <option value="3">Skończone zadania</option>
+                                    <option value="4">Zadania do zrobienia</option>
+                                    <option value="5">Zadania w toku</option>
+                                </select>
+                            </div>
 
+                            <div>
+                                <span class="m-3">Sortuj:</span>
+                                <select name="sortByOrder" id="sortByOrder">
+                                    <option value="0" selected>Od najnowszych</option>
+                                    <option value="1">Od najstarszych</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <span class="m-3">Zadania użytkownika:</span>
+                                <select name="sortByUser" id="sortByUser">
+                                    @foreach($project->members as $member)
+                                        <option value="{{$member->id}}">{{$member->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div>
+                                <button class="button" type="submit">Filtruj</button>
+                            </div>
+                        </form>
                     @foreach($tasks as $task)
                         <div class="bg-blue-200 d-inline px-3 py-2 font-medium text-lg flex">
                             <span class="mr-3">Przypisana osoba:</span>
@@ -54,22 +86,34 @@
                                 </select>
                             </form>
                         </div>
-                        <div class="card mb-9 {{($task->status_id === 3) ? 'border-2 border-green-600' : ''}}">
-                            <form action="{{ $task->path() }}" method="post">
+                        <div class="card mb-9 flex {{($task->status_id === 3) ? 'border-2 border-green-600' : ''}}">
+                            <form action="{{ $task->path() }}" method="post" class="w-full">
                                 @method('PATCH')
                                 @csrf
                                 <div class="flex items-center">
                                     <input class="w-full focus:outline-none {{($task->status_id === 3) ? 'text-gray-400' : ''}}" type="text"
                                            name="body" value="{{$task->body}}" {{($task->status_id === 3) ? 'readonly="readonly"' : ''}}>
-                                    <select class="font-bold rounded-sm text-white p-2 {{($task->status_id === 3) ? 'bg-green-600' : 'bg-blue-600'}}" name="status" id="status" onchange="this.form.submit()">
-                                        @foreach($statuses as $status)
-                                            <option
-                                                class="bg-white text-black"
-                                                value="{{$status->id}}" {{($status->id === $task->status_id)?'selected' : ''}}
-                                            >{{$status->name}}</option>
-                                        @endforeach
-                                    </select>
                                 </div>
+                            </form>
+
+                            <form action="{{ $task->path() }} ./status" method="POST">
+                                @method('PATCH')
+                                @csrf
+                                <select class="font-bold rounded-sm text-white p-2 mr-2 {{($task->status_id === 3) ? 'bg-green-600' : 'bg-blue-600'}}" name="status" id="status" onchange="this.form.submit()">
+                                    @foreach($statuses as $status)
+                                        <option
+                                            class="bg-white text-black"
+                                            value="{{$status->id}}" {{($status->id === $task->status_id)?'selected' : ''}}
+                                        >{{$status->name}}</option>
+                                    @endforeach
+                                </select>
+                            </form>
+
+                            <form action="{{ $task->path() . '/delete'}}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <input type="text" hidden value="{{$task->id}}">
+                                <button class="bg-red-500 font-bold rounded-sm text-white p-2 mr-2 hover:bg-red-700" type="submit">Usuń</button>
                             </form>
                         </div>
                     @endforeach

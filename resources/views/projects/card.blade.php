@@ -21,7 +21,9 @@
         </div>
         <div class="flex items-center justify-between my-2">
             <p class="text-gray-500 text-sm">
-                {{$project->tasks->where('status_id','=', 3)->count()}}/{{$project->tasks->count()}} zadań ukończonych
+                {{
+                    $project->tasks->where('deleted', '=' , 0)->where('status_id','=', 3)->count()}}/{{$project->tasks->where('deleted', '=' , 0)->count()
+                }} zadań ukończonych
             </p>
         </div>
         <div class="relative pt-1">

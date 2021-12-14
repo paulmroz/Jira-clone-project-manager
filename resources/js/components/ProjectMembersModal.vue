@@ -11,7 +11,7 @@
                                 <img :src=user.avatar class="rounded-full w-12 h-12 mr-2 border-2 border-blue-300">
                                 <span>{{user.name}}</span>
                             </div>
-                            <label for="user" class="button" v-if="projectOwner">
+                            <label for="user" class="button" v-if="isProjectOwner">
                                 Usuń
                             <input
                                 :key="user.id"
@@ -60,7 +60,7 @@ export default {
     },
 
     computed:{
-        projectOwner(){
+        isProjectOwner(){
             return this.project.owner.id === this.user.id;
         }
     }

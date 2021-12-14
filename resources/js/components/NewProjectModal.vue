@@ -38,7 +38,7 @@
                         <input
                             type="text"
                             class="border border-muted-light mb-2 p-2 text-xs block w-full rounded"
-                            placeholder="Task 1"
+                            placeholder="Zadanie.."
                             v-for="task in form.tasks"
                             v-model="task.body">
                     </div>

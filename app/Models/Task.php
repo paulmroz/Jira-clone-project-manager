@@ -21,7 +21,7 @@ class Task extends Model
       'completed' => 'boolean'
     ];
 
-    protected  static $recordableEvents = ['created', 'deleted'];
+    protected  static $recordableEvents = ['created','updated', 'deleted'];
 
     public function project(){
         return $this->belongsTo(Project::class);
@@ -34,14 +34,18 @@ class Task extends Model
 
     public function complete()
     {
-        $this->update(['status_id' => 3]);
+//        $this->update(['status_id' => 3]);
 
+        $this->status_id = 3;
+        $this->saveQuietly();
         $this->recordActivity('completed_task');
     }
 
     public function incomplete()
     {
-        $this->update(['status_id' => 1]);
+        //$this->update(['status_id' => 1]);
+        $this->status_id = 1;
+        $this->saveQuietly();
 
         $this->recordActivity('incompleted_task');
 
@@ -49,7 +53,9 @@ class Task extends Model
 
     public function inprogress()
     {
-        $this->update(['status_id' => 2]);
+        //$this->update(['status_id' => 2]);
+        $this->status_id = 2;
+        $this->saveQuietly();
 
         $this->recordActivity('inprogess_task');
 

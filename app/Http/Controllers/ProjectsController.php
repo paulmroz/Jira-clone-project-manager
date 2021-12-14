@@ -18,7 +18,18 @@ class ProjectsController extends Controller
     {
         $this->authorize('update', $project);
 
-        $tasks = $project->tasks()->orderBy('created_at', 'DESC')->paginate(5);
+        $tasks = $project->tasks()->where('deleted', '=' , 0);
+
+        if(\request()->exists('sortByOrder')){
+            (int)(\request('sortByOrder'))
+                ? $tasks->orderBy('created_at', 'DESC')
+                : $tasks->orderBy('created_at', 'ASC');
+        } else {
+                $tasks->orderBy('created_at', 'DESC');
+        }
+
+        //dd($tasks->select('created_at')->get());
+        $tasks =  $tasks->paginate(5);
 
         $statuses = Status::all();
 

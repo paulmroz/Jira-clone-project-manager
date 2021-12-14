@@ -5474,7 +5474,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   computed: {
-    projectOwner: function projectOwner() {
+    isProjectOwner: function isProjectOwner() {
       return this.project.owner.id === this.user.id;
     }
   }
@@ -43073,7 +43073,7 @@ var render = function () {
                       ],
                       staticClass:
                         "border border-muted-light mb-2 p-2 text-xs block w-full rounded",
-                      attrs: { type: "text", placeholder: "Task 1" },
+                      attrs: { type: "text", placeholder: "Zadanie.." },
                       domProps: { value: task.body },
                       on: {
                         input: function ($event) {
@@ -43227,7 +43227,7 @@ var render = function () {
                         _c("span", [_vm._v(_vm._s(user.name))]),
                       ]),
                       _vm._v(" "),
-                      _vm.projectOwner
+                      _vm.isProjectOwner
                         ? _c(
                             "label",
                             { staticClass: "button", attrs: { for: "user" } },

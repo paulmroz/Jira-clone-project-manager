@@ -20,6 +20,7 @@ class CreateTasksTable extends Migration
             $table->unsignedInteger('status_id')->default(1);
             $table->text('body');
             $table->boolean('completed')->default(false);
+            $table->boolean('deleted')->default(false);
             $table->timestamps();
         });
     }
