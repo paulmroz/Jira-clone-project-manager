@@ -20,11 +20,17 @@
             </p>
         </div>
         <div class="flex items-center justify-between my-2">
-            <p class="text-gray-500 text-sm">
-                {{
-                    $project->tasks->where('deleted', '=' , 0)->where('status_id','=', 3)->count()}}/{{$project->tasks->where('deleted', '=' , 0)->count()
+            @if($project->tasks->where('deleted', '=' , 0)->count() === 0)
+                <p class="text-gray-500 text-sm">
+                    Brak zadań
+                </p>
+            @else
+                <p class="text-gray-500 text-sm">
+                    {{
+                        $project->tasks->where('deleted', '=' , 0)->where('status_id','=', 3)->count()}}/{{$project->tasks->where('deleted', '=' , 0)->count()
                 }} zadań ukończonych
-            </p>
+                </p>
+            @endif
         </div>
         <div class="relative pt-1">
             <div class="overflow-hidden h-2 text-xs flex rounded bg-blue-200">
