@@ -41,30 +41,31 @@
                         <form action="{{$project->path()}}" class="p-3 mb-5 bg-blue-100 flex justify-between items-center" method="GET">
                             @csrf
                             <div>
-                                <span class="m-3">Filtruj po:</span>
-                                <select name="sortBy" id="sortBy">
-                                    <option value="1">Wszystkie</option>
-                                    <option value="2">Moje zadania</option>
-                                    <option value="3">Skończone zadania</option>
-                                    <option value="4">Zadania do zrobienia</option>
-                                    <option value="5">Zadania w toku</option>
+                                <span class="m-3">Filtruj po osobie:</span>
+                                <select name="sort_by_owner" id="sortBy">
+                                    <option hidden disabled selected value> -- select an option -- </option>
+                                    <option value="{{$project->owner->id}}">{{$project->owner->name}}</option>
+                                    @foreach($project->members as $member)
+                                        <option value="{{$member->id}}">{{$member->name}}</option>
+                                    @endforeach
                                 </select>
                             </div>
 
                             <div>
                                 <span class="m-3">Sortuj:</span>
-                                <select name="sortByOrder" id="sortByOrder">
-                                    <option value="0" selected>Od najnowszych</option>
-                                    <option value="1">Od najstarszych</option>
+                                <select name="sort_by_date" id="sortByOrder">
+                                    <option value="desc">Od najnowszych</option>
+                                    <option value="asc">Od najstarszych</option>
                                 </select>
                             </div>
 
                             <div>
-                                <span class="m-3">Zadania użytkownika:</span>
-                                <select name="sortByUser" id="sortByUser">
-                                    @foreach($project->members as $member)
-                                        <option value="{{$member->id}}">{{$member->name}}</option>
-                                    @endforeach
+                                <span class="m-3">Filtru po statusie:</span>
+                                <select name="sort_by_status" id="sortByUser">
+                                    <option hidden disabled selected value> -- select an option -- </option>
+                                    <option value="1"> Do zrobienia </option>
+                                    <option value="2"> W toku </option>
+                                    <option value="3"> Zrobione </option>
                                 </select>
                             </div>
                             <div>

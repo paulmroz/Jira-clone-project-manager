@@ -3,8 +3,10 @@
 namespace App\Models;
 
 use App\Traits\RecordsActivity;
+use App\Utilities\BaseFilter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
 
 class Task extends Model
@@ -71,4 +73,12 @@ class Task extends Model
         return $this->morphMany(Activity::class,'subject')->latest();
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function scopeCanFilter(Builder $builder, $filters){
+        return (new BaseFilter($filters))->filter($builder);
+    }
 }
