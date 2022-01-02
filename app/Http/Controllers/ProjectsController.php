@@ -21,7 +21,7 @@ class ProjectsController extends Controller
 
         $filters = ['sort_by_owner', 'sort_by_date', 'sort_by_status'];
 
-        $tasks = Task::canFilter($filters)->paginate(5);
+        $tasks = Task::canFilter($filters)->where('project_id', '=' , $project->id)->paginate(5);
 
         $statuses = Status::all();
 
